@@ -23,16 +23,6 @@ public class Users extends Person implements Tools {
     }
 
     @Override
-    public ArrayList<String> sortByWriter() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<String> sortByType() {
-        return null;
-    }
-
-    @Override
     public ArrayList SearchType() {
         return null;
     }

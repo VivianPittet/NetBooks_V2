@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
-public class HelloController {
+public class AdminController {
     @FXML
     private Label welcomeText;
     @FXML
