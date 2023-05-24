@@ -7,10 +7,14 @@ public class Users extends Person implements Tools {
 
         super(Username, PassWord);
     }
-
+    public ArrayList<Book> BookLibrary = new ArrayList<Book>();
+    public ArrayList<Book> getBookLibrary() {
+        return BookLibrary;
+    }
     @Override
-    public String SearchName() {
-        return null;
+    public String SearchName(Book BookName) {
+
+      return null;
     }
 
     @Override
