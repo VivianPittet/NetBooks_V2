@@ -44,7 +44,7 @@ public class Library {
         System.out.println("SearchName succes");
         return SearchedBook;*/
 
-    }
+
 
     /**
      * Used to search books of a writer
@@ -118,3 +118,4 @@ public class Library {
     }*/
 
 }
+

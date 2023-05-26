@@ -18,7 +18,7 @@ public class UserController {
     @FXML
     private ImageView picture;
 
-    @FXML
+    /*@FXML
     protected void sortByName() {
         ArrayList<String> booksName = HelloApplication.LibraryTest1.sortByName();
         for (String s : booksName) {
@@ -55,5 +55,5 @@ public class UserController {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 }
