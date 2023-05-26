@@ -17,8 +17,8 @@ public class Admin extends Person implements Tools{
      * @param BookName
      * @return the book's name
      */
-    @Override
-    public String SearchName(String BookName, ArrayList<Book> booklib) {
+
+    public String SearchName (String BookName, ArrayList<Book> booklib) {
         String SearchedBook = "Book not found";
         for(Book b: booklib){
             if (b.getName().equals(BookName)){
@@ -27,7 +27,6 @@ public class Admin extends Person implements Tools{
         }
         System.out.println("SearchName succes");
         return SearchedBook;
-
     }
 
     /**
@@ -35,7 +34,7 @@ public class Admin extends Person implements Tools{
      * @param writer
      * @return a list of book with the resquested writer
      */
-    @Override
+
     public ArrayList<Book> SearchWriter(String writer, ArrayList<Book> booklib) {
         ArrayList<Book> searchedWriter = new ArrayList<Book>();
         for(Book b : booklib){
@@ -51,7 +50,7 @@ public class Admin extends Person implements Tools{
      * @param type
      * @return list of book coresponding to the requested type
      */
-    @Override
+
     public ArrayList SearchType(String type, ArrayList<Book> booklib) {
         ArrayList<Book> searchedType = new ArrayList();
         for(Book b : booklib){
@@ -66,7 +65,7 @@ public class Admin extends Person implements Tools{
      * Method to sort the library by name in alphabetic order
      * @return a arraylist of names
      */
-    @Override
+
     public ArrayList sortByName(ArrayList<Book>booklib) {
         ArrayList<String> NameLibrary = new ArrayList<String>();
         for(Book b: booklib){
@@ -79,7 +78,7 @@ public class Admin extends Person implements Tools{
      * Method to sort the library by writer in alphabetic order
      * @return a list of writer
      */
-    @Override
+
     public ArrayList<String> sortByWriter(ArrayList<Book> booklib) {
         ArrayList<String> WriterLibrary = new ArrayList<String>();
         for(Book b: booklib){
@@ -92,7 +91,6 @@ public class Admin extends Person implements Tools{
      *Method to sort by type in alphabetic order
      * @return a list of type
      */
-    @Override
     public ArrayList<String> sortByType(ArrayList<Book> booklib) {
         ArrayList<String> TypeLibrary = new ArrayList<>();
         for (Book b : booklib) {
@@ -102,7 +100,6 @@ public class Admin extends Person implements Tools{
         return TypeLibrary;
     }
 
-    @Override
     public void SortBook() {
 
     }
