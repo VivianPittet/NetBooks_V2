@@ -107,7 +107,7 @@ public class Admin extends Person implements Tools{
 
     }
 
-    public void AddBook(){}
+    public void AddBook(){};
 
     public void RemoveBook(){}
 

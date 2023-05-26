@@ -2,7 +2,9 @@ package com.example.netbooks_v2.controller;
 
 import com.example.netbooks_v2.HelloApplication;
 import com.example.netbooks_v2.model.Book;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -12,13 +14,15 @@ import java.util.ArrayList;
 
 public class AdminController {
     @FXML
+    ChoiceBox SearchChoice = new ChoiceBox<>(FXCollections.observableArrayList("Name","Witer","Type"));
+    @FXML
     private Label welcomeText;
     @FXML
     private TextField BooksName;
     @FXML
     private ImageView picture;
 
-    @FXML
+    /*@FXML
     protected void sortByName() {
         ArrayList<String> booksName = HelloApplication.LibraryTest1.sortByName();
         for (String s : booksName) {
@@ -55,5 +59,5 @@ public class AdminController {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 }

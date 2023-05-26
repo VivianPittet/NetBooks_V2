@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.netbooks_v2.controller.AdminController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.netbooks_v2.controller.AdminController">
+   <children>
+      <Accordion layoutX="36.0" layoutY="27.0" prefHeight="258.0" prefWidth="527.0">
+        <panes>
+          <TitledPane animated="false" text="Search">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="14.0" layoutY="52.0" promptText="Searching bar" />
+                        <ChoiceBox fx:id="SearchChoice" layoutX="14.0" layoutY="14.0" prefWidth="150.0" />
+                        <Button layoutX="192.0" layoutY="52.0" mnemonicParsing="false" text="Search" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Sort">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="SortByName" />
+                        <Button layoutX="14.0" layoutY="65.0" mnemonicParsing="false" text="SortByWriter" />
+                        <Button layoutX="14.0" layoutY="117.0" mnemonicParsing="false" text="SortByType" />
+                        <ScrollPane layoutX="257.0" layoutY="7.0" prefHeight="168.0" prefWidth="255.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="214.0" />
+                          </content>
+                        </ScrollPane>
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" prefHeight="200.0" prefWidth="527.0" text="AddBook">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="14.0" layoutY="14.0" promptText="BookName">
+                           <font>
+                              <Font name="Arial Italic" size="12.0" />
+                           </font>
+                        </TextField>
+                        <TextField layoutX="15.0" layoutY="52.0" promptText="Writer" />
+                        <TextField layoutX="15.0" layoutY="91.0" promptText="Type" />
+                        <TextField layoutX="202.0" layoutY="14.0" promptText="Pages" />
+                        <TextField layoutX="203.0" layoutY="52.0" promptText="Price" />
+                        <Button layoutX="460.0" layoutY="91.0" mnemonicParsing="false" text="Add" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+            <TitledPane animated="false" text="DeleteBook">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="14.0" layoutY="14.0" promptText="Search Book" />
+                     </children></AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Modify">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
 </AnchorPane>

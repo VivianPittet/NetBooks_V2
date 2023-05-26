@@ -42,9 +42,9 @@ public class Library {
             }
         }
         System.out.println("SearchName succes");
-        return SearchedBook;*/
+        return SearchedBook;
 
-    }
+    }*/
 
     /**
      * Used to search books of a writer
@@ -82,14 +82,14 @@ public class Library {
      * Method to sort the library by name in alphabetic order
      * @return a arraylist of names
      */
-    public ArrayList<String> sortByName(){
+    /*public ArrayList<String> sortByName(){
         ArrayList<String> NameLibrary = new ArrayList<String>();
         for(Book b: BookLibrary){
             NameLibrary.add(b.getName());
         }
         Collections.sort(NameLibrary);
         return NameLibrary;
-    }
+    }*/
 
     /**
      * Method to sort the library by writer in alphabetic order
