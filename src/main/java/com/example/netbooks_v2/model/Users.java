@@ -13,7 +13,7 @@ public class Users extends Person implements Tools {
         return BookLibrary;
     }
 
-    public String SearchName(Book BookName,ArrayList<Book> booklib) {
+    public String SearchName(String  BookName,ArrayList<Book> booklib) {
         String SearchedBook = "Book not found";
         for(Book b: booklib){
             if (b.getName().equals(BookName)){
@@ -66,6 +66,14 @@ public class Users extends Person implements Tools {
         }
         Collections.sort(TypeLibrary);
         return TypeLibrary;
+    }
+    public ArrayList sortByName(ArrayList<Book>booklib) {
+        ArrayList<String> NameLibrary = new ArrayList<String>();
+        for(Book b: booklib){
+            NameLibrary.add(b.getName());
+        }
+        Collections.sort(NameLibrary);
+        return NameLibrary;
     }
 
     //public void SortBook(){}
