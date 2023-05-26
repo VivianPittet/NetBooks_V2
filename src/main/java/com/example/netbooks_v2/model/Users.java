@@ -12,7 +12,7 @@ public class Users extends Person implements Tools {
     public ArrayList<Book> getBookLibrary() {
         return BookLibrary;
     }
-    @Override
+
     public String SearchName(Book BookName,ArrayList<Book> booklib) {
         String SearchedBook = "Book not found";
         for(Book b: booklib){
@@ -24,7 +24,7 @@ public class Users extends Person implements Tools {
         return SearchedBook;
     }
 
-    @Override
+
     public ArrayList<Book>SearchWriter(String NameWriter,ArrayList<Book> booklib) {
         ArrayList<Book> searchedWriter = new ArrayList<Book>();
         for(Book b : booklib){
@@ -36,7 +36,7 @@ public class Users extends Person implements Tools {
         return searchedWriter;
     }
 
-    @Override
+   // @Override
     public ArrayList SearchType(String type, ArrayList<Book> booklib) {
         ArrayList<Book> searchedType = new ArrayList();
         for(Book b : booklib){
@@ -49,7 +49,7 @@ public class Users extends Person implements Tools {
 
     }
 
-    @Override
+   // @Override
     public ArrayList<String> sortByWriter(ArrayList<Book> booklib) {
         ArrayList<String> WriterLibrary = new ArrayList<String>();
         for(Book b: booklib){
@@ -58,7 +58,7 @@ public class Users extends Person implements Tools {
         Collections.sort(WriterLibrary);
         return WriterLibrary;
     }
-    @Override
+    //@Override
     public ArrayList<String> sortByType(ArrayList<Book> booklib) {
         ArrayList<String> TypeLibrary = new ArrayList<>();
         for (Book b : booklib) {
@@ -70,13 +70,24 @@ public class Users extends Person implements Tools {
 
     //public void SortBook(){}
 
-    public String  BuyBook(Book WishBook){
+   /* public String  BuyBook(Book WishBook){
         ArrayList<String> SelectBook = new ArrayList<>();
         for (Book b: WishBook){
-            SelectBook.add(b.get);
+            SelectBook.add(b.getPrice());
         }
 
 
+    }*/
+    public String BuyBook(Book BookName,ArrayList<Book> booklib) {
+        String WishBook = "Not the book";
+        for(Book b: booklib){
+            if (b.getName().equals(BookName)){
+                WishBook = b.getName();
+            }
+        }
+        System.out.println("get book");
+        return WishBook;
     }
+
 
 }
