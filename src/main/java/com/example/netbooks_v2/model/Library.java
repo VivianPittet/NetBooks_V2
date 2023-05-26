@@ -34,7 +34,7 @@ public class Library {
      * @param BookName
      * @return the book's name
      */
-    public String SearchName(String BookName) {
+    /*public String SearchName(String BookName) {
         String SearchedBook = "Book not found";
         for(Book b: BookLibrary){
             if (b.getName().equals(BookName)){
@@ -42,7 +42,7 @@ public class Library {
             }
         }
         System.out.println("SearchName succes");
-        return SearchedBook;
+        return SearchedBook;*/
 
     }
 
@@ -51,7 +51,7 @@ public class Library {
      * @param writer
      * @return a list of book with the resquested writer
      */
-    public ArrayList<Book> SearchWriter(String writer){ // Sort the book in the fxml method
+    /*public ArrayList<Book> SearchWriter(String writer){ // Sort the book in the fxml method
         ArrayList<Book> searchedWriter = new ArrayList<Book>();
         for(Book b : BookLibrary){
             if (b.getWriter().equals(writer)){
@@ -60,14 +60,14 @@ public class Library {
         }
         System.out.println("succes writer");
         return searchedWriter;
-    }
+    }*/
 
     /**
      * Used to search book by type
      * @param type
      * @return list of book coresponding to the requested type
      */
-    public ArrayList<Book> SearchType(String type){
+    /*public ArrayList<Book> SearchType(String type){
         ArrayList<Book> searchedType = new ArrayList();
         for(Book b : BookLibrary){
             if (b.getType().equals(type)){
@@ -76,7 +76,7 @@ public class Library {
         }
         System.out.println("Succes type");
         return searchedType;
-    }
+    }*/
 
     /**
      * Method to sort the library by name in alphabetic order
@@ -95,26 +95,26 @@ public class Library {
      * Method to sort the library by writer in alphabetic order
      * @return a list of writer
      */
-    public ArrayList<String> sortByWriter(){
+    /*public ArrayList<String> sortByWriter(){
         ArrayList<String> WriterLibrary = new ArrayList<String>();
         for(Book b: BookLibrary){
             WriterLibrary.add(b.getWriter());
         }
         Collections.sort(WriterLibrary);
         return WriterLibrary;
-    }
+    }*/
 
     /**
      *Method to sort by type in alphabetic order
      * @return a list of type
      */
-    public ArrayList<String> sortByType(){
+    /*public ArrayList<String> sortByType(){
         ArrayList<String> TypeLibrary = new ArrayList<>();
         for(Book b: BookLibrary){
             TypeLibrary.add(b.getType());
         }
         Collections.sort(TypeLibrary);
         return TypeLibrary;
-    }
+    }*/
 
 }

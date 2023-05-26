@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public interface Tools
 {
     public String SearchName();
-    public ArrayList<String> SearchWriter();
-    public ArrayList<String> SearchType();
+    public ArrayList<Book> SearchWriter();
+    public ArrayList<Book> SearchType();
     public ArrayList<String> sortByName();
     public ArrayList<String> sortByWriter();
     public ArrayList<String> sortByType();
