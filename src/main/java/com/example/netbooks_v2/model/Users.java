@@ -13,11 +13,11 @@ public class Users extends Person implements Tools {
         return BookLibrary;
     }
 
-    public String SearchName(String  BookName,ArrayList<Book> booklib) {
-        String SearchedBook = "Book not found";
+    public Book SearchName(String  BookName,ArrayList<Book> booklib) {
+        Book SearchedBook=null;
         for(Book b: booklib){
             if (b.getName().equals(BookName)){
-                SearchedBook = b.getName();
+                SearchedBook = b;
             }
         }
         System.out.println("SearchName succes");
