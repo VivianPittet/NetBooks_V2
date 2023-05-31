@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.netbooks_v2.controller.AdminController">
+<AnchorPane prefHeight="558.0" prefWidth="1049.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.netbooks_v2.controller.AdminController">
    <children>
-      <Accordion layoutX="36.0" layoutY="27.0" prefHeight="258.0" prefWidth="527.0">
+      <Accordion layoutX="36.0" layoutY="27.0" prefHeight="500.0" prefWidth="750.0">
         <panes>
           <TitledPane animated="false" text="Search">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="14.0" layoutY="52.0" promptText="Searching bar" />
-                        <ChoiceBox fx:id="SearchChoice" layoutX="14.0" layoutY="14.0" prefWidth="150.0" />
-                        <Button layoutX="192.0" layoutY="52.0" mnemonicParsing="false" text="Search" />
+                        <TextField fx:id="SearchBar" disable="true" layoutX="14.0" layoutY="101.0" prefHeight="0.0" prefWidth="149.0" promptText="Searching bar" />
+                        <ChoiceBox fx:id="SearchChoice" layoutX="14.0" layoutY="56.0" onMouseClicked="#SearchChoiceSelected" prefWidth="150.0" />
+                        <Button layoutX="191.0" layoutY="101.0" mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="25.0" prefWidth="51.0" text="Search" />
+                        <ImageView fx:id="SearchPicture" fitHeight="234.0" fitWidth="239.0" layoutX="481.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="bName" layoutX="327.0" layoutY="38.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="bWriter" layoutX="327.0" layoutY="114.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="bType" layoutX="327.0" layoutY="186.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="bPages" layoutX="327.0" layoutY="275.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="29.0" text="Select a search method" />
+                        <ListView fx:id="bListView" layoutX="333.0" layoutY="26.0" prefHeight="317.0" prefWidth="392.0" visible="false" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
