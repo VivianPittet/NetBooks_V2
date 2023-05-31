@@ -22,7 +22,7 @@ public class AdminController {
     @FXML
     private ImageView picture;
 
-    /*@FXML
+   /* @FXML
     protected void sortByName() {
         ArrayList<String> booksName = HelloApplication.LibraryTest1.sortByName();
         for (String s : booksName) {

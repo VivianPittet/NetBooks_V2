@@ -18,13 +18,14 @@ public class UserController {
     @FXML
     private ImageView picture;
 
-    /*@FXML
+  /*  @FXML
     protected void sortByName() {
         ArrayList<String> booksName = HelloApplication.LibraryTest1.sortByName();
         for (String s : booksName) {
             System.out.println(s);
         }
     }
+
     @FXML
     protected void sortByWriter() {
         ArrayList<String> writerName = HelloApplication.LibraryTest1.sortByWriter();
