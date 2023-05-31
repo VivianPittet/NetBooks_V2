@@ -55,6 +55,10 @@ public class Book { private float price;
         ImagePath = imagePath;
     }
 
-    public void setPrice(float Price){price=Price;}
-    public float getPrice(){return price;}
+    public void setPrice(float Price){
+        price=Price;
+    }
+    public float getPrice(){
+        return price;
+    }
 }
