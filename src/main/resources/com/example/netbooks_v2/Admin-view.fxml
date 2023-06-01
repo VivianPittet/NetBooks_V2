@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="558.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.netbooks_v2.controller.AdminController">
@@ -71,16 +72,18 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="14.0" layoutY="14.0" promptText="BookName">
+                        <TextField fx:id="addName" layoutX="14.0" layoutY="14.0" promptText="BookName">
                            <font>
                               <Font name="Arial Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <TextField layoutX="15.0" layoutY="52.0" promptText="Writer" />
-                        <TextField layoutX="15.0" layoutY="91.0" promptText="Type" />
-                        <TextField layoutX="202.0" layoutY="14.0" promptText="Pages" />
-                        <TextField layoutX="203.0" layoutY="52.0" promptText="Price" />
-                        <Button layoutX="460.0" layoutY="91.0" mnemonicParsing="false" text="Add" />
+                        <TextField fx:id="addWriter" layoutX="15.0" layoutY="52.0" promptText="Writer" />
+                        <TextField fx:id="addType" layoutX="15.0" layoutY="91.0" promptText="Type" />
+                        <TextField fx:id="addPages" layoutX="202.0" layoutY="14.0" promptText="Pages" />
+                        <TextField fx:id="addPrice" layoutX="203.0" layoutY="52.0" promptText="Price" />
+                        <Button layoutX="388.0" layoutY="91.0" mnemonicParsing="false" text="Add" />
+                        <Button layoutX="233.0" layoutY="91.0" mnemonicParsing="false" text="Select Picture" />
+                        <Line endX="-59.666656494140625" endY="295.6666564941406" layoutX="524.0" layoutY="76.0" startX="-59.666656494140625" startY="-76.99999237060547" />
                      </children></AnchorPane>
             </content>
           </TitledPane>

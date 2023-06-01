@@ -20,13 +20,13 @@ public class AdminController implements Initializable {
     // Id for search method
     ArrayList<Book> blib = HelloApplication.LibraryTest1.getBookLibrary();
     @FXML
-    private Label bName = new Label();
+    private Label bName;
     @FXML
-    private Label bWriter = new Label();
+    private Label bWriter;
     @FXML
-    private Label bType = new Label();
+    private Label bType;
     @FXML
-    private Label bPages = new Label();
+    private Label bPages;
     @FXML
     private ChoiceBox<String> SearchChoice;
     private String[] CBName = {"Name", "Writer", "Type"};
@@ -42,10 +42,22 @@ public class AdminController implements Initializable {
     private Button ShowBook;
     @FXML
     private Button backButton;
+
+    // ID for add method
     @FXML
-    protected void listviewclick(){
-        System.out.println(bListView.getSelectionModel().getSelectedItems());
-    }
+    private TextField addName;
+
+    @FXML
+    private TextField addWriter;
+
+    @FXML
+    private TextField addType;
+
+    @FXML
+    private TextField addPages;
+
+    @FXML
+    private TextField addPrice;
 
     /*@FXML
     protected void sortByName() {
@@ -68,6 +80,10 @@ public class AdminController implements Initializable {
             System.out.println(s);
         }
     } */
+
+    /**
+     * Used to clear the page when you change the search method
+     */
     @FXML
     protected void SearchChoiceSelected() {
         SearchBar.setDisable(false);
@@ -80,8 +96,14 @@ public class AdminController implements Initializable {
         bListView.getItems().clear();
 
         }
+
+    /**
+     * Search the book
+     * use the selected method (Name, Writer or Type)
+     */
     @FXML
     protected void onSearchButtonClick(){
+        bListView.getItems().clear(); // Clear the list, else the books appear many times
 
         switch(SearchChoice.getValue()) {
             case "Name":
@@ -145,6 +167,11 @@ public class AdminController implements Initializable {
         }
 
     }
+
+    /**
+     * Show the book and set the list book visibility false
+     * Set back button visibility true
+     */
     @FXML
     protected void onShowBookButtonClick(){
         Book bookToShow = HelloApplication.Vivian.SearchName(bListView.getSelectionModel().getSelectedItem(),blib);
@@ -164,6 +191,11 @@ public class AdminController implements Initializable {
         }
         backButton.setVisible(true);
     }
+
+    /**
+     * Back to the liste to select a book
+     * Set book list visibility true
+     */
     @FXML
     protected void onBackButtonClick(){
         bScrollPane.setVisible(true);
@@ -183,6 +215,12 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SearchChoice.getItems().addAll(CBName);
+
+    }
+    @FXML
+    protected void OnAddBookClick(String name){
+        String BookName = addName.getText();
+
 
     }
 }
