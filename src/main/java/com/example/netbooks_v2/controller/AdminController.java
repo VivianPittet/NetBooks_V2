@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
     // Id for search method
+    ArrayList<Book> blib = HelloApplication.LibraryTest1.getBookLibrary();
     @FXML
     private Label bName = new Label();
     @FXML
@@ -35,6 +36,16 @@ public class AdminController implements Initializable {
     private ImageView SearchPicture;
     @FXML
     private ListView<String> bListView = new ListView<>();
+    @FXML
+    private ScrollPane bScrollPane;
+    @FXML
+    private Button ShowBook;
+    @FXML
+    private Button backButton;
+    @FXML
+    protected void listviewclick(){
+        System.out.println(bListView.getSelectionModel().getSelectedItems());
+    }
 
     /*@FXML
     protected void sortByName() {
@@ -60,52 +71,108 @@ public class AdminController implements Initializable {
     @FXML
     protected void SearchChoiceSelected() {
         SearchBar.setDisable(false);
+        bScrollPane.setVisible(false);
+        bName.setText("");
+        bWriter.setText("");
+        bType.setText("");
+        bPages.setText("");
+        SearchPicture.setVisible(false);
+        bListView.getItems().clear();
+
         }
     @FXML
     protected void onSearchButtonClick(){
-        switch(SearchChoice.getValue()){
+
+        switch(SearchChoice.getValue()) {
             case "Name":
-                String pathimage="not the good path";
+                String pathimage = "not the good path";
                 Book SearchedBook = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
                 if (SearchedBook != null) {
                     pathimage = SearchedBook.getImagePath();
-                    bName.setText("Name: "+ SearchedBook.getName());
+                    bName.setText("Name: " + SearchedBook.getName());
                     bWriter.setText("Writer: " + SearchedBook.getWriter());
                     bType.setText("Type: " + SearchedBook.getType());
                     bPages.setText("Pages: " + Integer.toString(SearchedBook.getPages()));
-            }
-                try{
-                    Image img= new Image("file:"+pathimage);
-                    SearchPicture.setImage(img);
-                }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    try {
+                        Image img = new Image("file:" + pathimage);
+                        SearchPicture.setVisible(true);
+                        SearchPicture.setImage(img);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                }
+                else{
+                    bName.setText("No book found");
                 }
 
                 break;
             case "Writer":
-                bListView.setVisible(true);
                 ArrayList<Book> searchedWriter = HelloApplication.Vivian.SearchWriter(SearchBar.getText(),HelloApplication.LibraryTest1.getBookLibrary());
                 if (searchedWriter.size()>0){
+                    bScrollPane.setVisible(true);
                 ArrayList<String>bookName= new ArrayList<>();
                 for(Book b: searchedWriter){
                     bookName.add(b.getName());
                 }
-                //bListView.getItems().addAll(bookName);
                 bListView.getItems().addAll(bookName);
+                ShowBook.setVisible(true);
+                }
+                else{
+                    bName.setText("No writer found");
 
                 }
                 break;
             case "Type":
+                ArrayList<Book> searchedType = HelloApplication.Vivian.SearchType(SearchBar.getText(),HelloApplication.LibraryTest1.getBookLibrary());
+                if(searchedType.size()>0){
+                    bScrollPane.setVisible(true);
+                    ArrayList<String>bookName= new ArrayList<>();
+                    for(Book b: searchedType){
+                        bookName.add(b.getName());
+                    }
+                    //bListView.getItems().addAll(bookName);
+                    bListView.getItems().addAll(bookName);
+                    ShowBook.setVisible(true);
+                }
+                else{
+                        bName.setText("No type found");}
+
                 break;
             default:
-                bName.setText("");
-                bPages.setText("");
-                bType.setText("");
-                bWriter.setText("");
-                bListView.setVisible(false);
+                bName.setText("Please select a search method");
                 break;
         }
 
+    }
+    @FXML
+    protected void onShowBookButtonClick(){
+        Book bookToShow = HelloApplication.Vivian.SearchName(bListView.getSelectionModel().getSelectedItem(),blib);
+        if (bookToShow!=null){
+            bScrollPane.setVisible(false);
+            bName.setText("Name: "+ bookToShow.getName());
+            bWriter.setText("Writer: " + bookToShow.getWriter());
+            bType.setText("Type: " + bookToShow.getType());
+            bPages.setText("Pages: " + Integer.toString(bookToShow.getPages()));
+            try{
+                Image img= new Image("file:"+bookToShow.getImagePath());
+                SearchPicture.setVisible(true);
+                SearchPicture.setImage(img);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        backButton.setVisible(true);
+    }
+    @FXML
+    protected void onBackButtonClick(){
+        bScrollPane.setVisible(true);
+        bName.setText("");
+        bWriter.setText("");
+        bType.setText("");
+        bPages.setText("");
+        SearchPicture.setVisible(false);
+        backButton.setVisible(false);
     }
 
     /**

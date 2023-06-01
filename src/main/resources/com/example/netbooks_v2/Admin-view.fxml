@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="558.0" prefWidth="1049.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.netbooks_v2.controller.AdminController">
+<AnchorPane prefHeight="558.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.netbooks_v2.controller.AdminController">
    <children>
-      <Accordion layoutX="36.0" layoutY="27.0" prefHeight="500.0" prefWidth="750.0">
+      <Accordion layoutX="36.0" layoutY="27.0" prefHeight="500.0" prefWidth="1000.0">
         <panes>
           <TitledPane animated="false" text="Search">
             <content>
@@ -15,30 +15,40 @@
                      <children>
                         <TextField fx:id="SearchBar" disable="true" layoutX="14.0" layoutY="101.0" prefHeight="0.0" prefWidth="149.0" promptText="Searching bar" />
                         <ChoiceBox fx:id="SearchChoice" layoutX="14.0" layoutY="56.0" onMouseClicked="#SearchChoiceSelected" prefWidth="150.0" />
-                        <Button layoutX="191.0" layoutY="101.0" mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="25.0" prefWidth="51.0" text="Search" />
-                        <ImageView fx:id="SearchPicture" fitHeight="234.0" fitWidth="239.0" layoutX="481.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="bName" layoutX="327.0" layoutY="38.0">
+                        <Button layoutX="191.0" layoutY="101.0" mnemonicParsing="false" onAction="#onSearchButtonClick" prefHeight="26.0" prefWidth="74.0" text="Search" />
+                        <ImageView fx:id="SearchPicture" fitHeight="234.0" fitWidth="239.0" layoutX="542.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="bName" layoutX="266.0" layoutY="42.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="bWriter" layoutX="327.0" layoutY="114.0">
+                        <Label fx:id="bWriter" layoutX="271.0" layoutY="138.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="bType" layoutX="327.0" layoutY="186.0">
+                        <Label fx:id="bType" layoutX="264.0" layoutY="226.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="bPages" layoutX="327.0" layoutY="275.0">
+                        <Label fx:id="bPages" layoutX="265.0" layoutY="291.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                         <Label layoutX="27.0" layoutY="29.0" text="Select a search method" />
-                        <ListView fx:id="bListView" layoutX="333.0" layoutY="26.0" prefHeight="317.0" prefWidth="392.0" visible="false" />
+                        <ScrollPane fx:id="bScrollPane" layoutX="480.0" layoutY="16.0" prefHeight="340.0" prefWidth="362.0" visible="false">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="400.0">
+                                 <children>
+                                    <ListView fx:id="bListView" prefHeight="700.0" prefWidth="400.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                        <Button fx:id="backButton" layoutX="910.0" layoutY="305.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" visible="false" />
+                        <Button fx:id="ShowBook" layoutX="892.0" layoutY="269.0" mnemonicParsing="false" onAction="#onShowBookButtonClick" text="Show Book" visible="false" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
