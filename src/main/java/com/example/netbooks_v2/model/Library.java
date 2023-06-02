@@ -1,12 +1,9 @@
 package com.example.netbooks_v2.model;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.FileSystemNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 
 public class Library {
@@ -16,6 +13,10 @@ public class Library {
         return BookLibrary;
     }
 
+    /**
+     * Method for read CSV
+     * @param pathFile
+     */
     public void readCSV(String pathFile) {
         String Line= "";
         try {
@@ -32,6 +33,24 @@ public class Library {
             e.printStackTrace();
         }
         }
+        public void AddInCsv(String Name, String Writer, int Page, String Type, float Price,String ImagePath, String pathFile){
+        try {
+            FileWriter fw = new FileWriter(pathFile,true);
+            BufferedWriter bw= new BufferedWriter(fw);
+            PrintWriter pw=new PrintWriter(bw);
+
+            pw.println(Name+","+Writer+","+Page+","+Type+","+Price);
+            pw.flush();//
+            pw.close();
+            System.out.println("record saved");
+        }
+        catch (Exception E){
+            E.printStackTrace();
+            System.out.println("recod not saved");
+        }
+    }
+
+
 
 
 

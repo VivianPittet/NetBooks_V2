@@ -31,7 +31,10 @@ public class HelloApplication extends Application {
         LibraryTest1.addBook(MikeHorn);
         LibraryTest1.addBook(cherub);
         LibraryTest1.addBook(ToucherLesEtoiles);
-        LibraryTest1.readCSV("DataBooks/Ressources_Data_Netbooks.csv");
+        //LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
+        LibraryTest1.AddInCsv("aaa", "bbb", 12,"ccc",25,"ccc","DataBooks/Resources_Data_Netbooks.csv" );
+        LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
         launch();
     }
 }
+
