@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         Vivian = new Admin("Vivian","0000");
         Book ToucherLesEtoiles = new Book("Vouloir toucher les étoiles", 249,"Mike Horn","Adventure","none",15f);
-        Book MikeHorn = new Book("Latitude 0",352,"Mike Horn","Adventure","BookPictures/LATITUDE0.png",22.8445f);
+        Book MikeHorn = new Book("Latitude 0",352,"Mike Horn","Adventure","BookPictures/LATITUDE 0.png",22.8445f);
         Book cherub = new Book("100 jours en enfer", 448,"Robert Muchamore", "SF","BookPictures/cherub1.png", 8.2f);
         LibraryTest1 = new Library();
         LibraryTest1.addBook(MikeHorn);

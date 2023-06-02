@@ -18,14 +18,15 @@ import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
     // Id for search method
+    ArrayList<Book> blib = HelloApplication.LibraryTest1.getBookLibrary();
     @FXML
-    private Label bName = new Label();
+    private Label bName;
     @FXML
-    private Label bWriter = new Label();
+    private Label bWriter;
     @FXML
-    private Label bType = new Label();
+    private Label bType;
     @FXML
-    private Label bPages = new Label();
+    private Label bPages;
     @FXML
     private ChoiceBox<String> SearchChoice;
     private String[] CBName = {"Name", "Writer", "Type"};
@@ -35,6 +36,28 @@ public class AdminController implements Initializable {
     private ImageView SearchPicture;
     @FXML
     private ListView<String> bListView = new ListView<>();
+    @FXML
+    private ScrollPane bScrollPane;
+    @FXML
+    private Button ShowBook;
+    @FXML
+    private Button backButton;
+
+    // ID for add method
+    @FXML
+    private TextField addName;
+
+    @FXML
+    private TextField addWriter;
+
+    @FXML
+    private TextField addType;
+
+    @FXML
+    private TextField addPages;
+
+    @FXML
+    private TextField addPrice;
 
     /*@FXML
     protected void sortByName() {
@@ -57,55 +80,131 @@ public class AdminController implements Initializable {
             System.out.println(s);
         }
     } */
+
+    /**
+     * Used to clear the page when you change the search method
+     */
     @FXML
     protected void SearchChoiceSelected() {
         SearchBar.setDisable(false);
+        bScrollPane.setVisible(false);
+        bName.setText("");
+        bWriter.setText("");
+        bType.setText("");
+        bPages.setText("");
+        SearchPicture.setVisible(false);
+        bListView.getItems().clear();
+
         }
+
+    /**
+     * Search the book
+     * use the selected method (Name, Writer or Type)
+     */
     @FXML
     protected void onSearchButtonClick(){
-        switch(SearchChoice.getValue()){
+        bListView.getItems().clear(); // Clear the list, else the books appear many times
+
+        switch(SearchChoice.getValue()) {
             case "Name":
-                String pathimage="not the good path";
+                String pathimage = "not the good path";
                 Book SearchedBook = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
                 if (SearchedBook != null) {
                     pathimage = SearchedBook.getImagePath();
-                    bName.setText("Name: "+ SearchedBook.getName());
+                    bName.setText("Name: " + SearchedBook.getName());
                     bWriter.setText("Writer: " + SearchedBook.getWriter());
                     bType.setText("Type: " + SearchedBook.getType());
                     bPages.setText("Pages: " + Integer.toString(SearchedBook.getPages()));
-            }
-                try{
-                    Image img= new Image("file:"+pathimage);
-                    SearchPicture.setImage(img);
-                }catch(Exception e){
-                    System.out.println(e.getMessage());
+                    try {
+                        Image img = new Image("file:" + pathimage);
+                        SearchPicture.setVisible(true);
+                        SearchPicture.setImage(img);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                }
+                else{
+                    bName.setText("No book found");
                 }
 
                 break;
             case "Writer":
-                bListView.setVisible(true);
                 ArrayList<Book> searchedWriter = HelloApplication.Vivian.SearchWriter(SearchBar.getText(),HelloApplication.LibraryTest1.getBookLibrary());
                 if (searchedWriter.size()>0){
+                    bScrollPane.setVisible(true);
                 ArrayList<String>bookName= new ArrayList<>();
                 for(Book b: searchedWriter){
                     bookName.add(b.getName());
                 }
-                //bListView.getItems().addAll(bookName);
                 bListView.getItems().addAll(bookName);
+                ShowBook.setVisible(true);
+                }
+                else{
+                    bName.setText("No writer found");
 
                 }
                 break;
             case "Type":
+                ArrayList<Book> searchedType = HelloApplication.Vivian.SearchType(SearchBar.getText(),HelloApplication.LibraryTest1.getBookLibrary());
+                if(searchedType.size()>0){
+                    bScrollPane.setVisible(true);
+                    ArrayList<String>bookName= new ArrayList<>();
+                    for(Book b: searchedType){
+                        bookName.add(b.getName());
+                    }
+                    //bListView.getItems().addAll(bookName);
+                    bListView.getItems().addAll(bookName);
+                    ShowBook.setVisible(true);
+                }
+                else{
+                        bName.setText("No type found");}
+
                 break;
             default:
-                bName.setText("");
-                bPages.setText("");
-                bType.setText("");
-                bWriter.setText("");
-                bListView.setVisible(false);
+                bName.setText("Please select a search method");
                 break;
         }
 
+    }
+
+    /**
+     * Show the book and set the list book visibility false
+     * Set back button visibility true
+     */
+    @FXML
+    protected void onShowBookButtonClick(){
+        Book bookToShow = HelloApplication.Vivian.SearchName(bListView.getSelectionModel().getSelectedItem(),blib);
+        if (bookToShow!=null){
+            bScrollPane.setVisible(false);
+            bName.setText("Name: "+ bookToShow.getName());
+            bWriter.setText("Writer: " + bookToShow.getWriter());
+            bType.setText("Type: " + bookToShow.getType());
+            bPages.setText("Pages: " + Integer.toString(bookToShow.getPages()));
+            try{
+                Image img= new Image("file:"+bookToShow.getImagePath());
+                SearchPicture.setVisible(true);
+                SearchPicture.setImage(img);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        backButton.setVisible(true);
+    }
+
+    /**
+     * Back to the liste to select a book
+     * Set book list visibility true
+     */
+    @FXML
+    protected void onBackButtonClick(){
+        bScrollPane.setVisible(true);
+        bName.setText("");
+        bWriter.setText("");
+        bType.setText("");
+        bPages.setText("");
+        SearchPicture.setVisible(false);
+        backButton.setVisible(false);
     }
 
     /**
@@ -116,6 +215,12 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SearchChoice.getItems().addAll(CBName);
+
+    }
+    @FXML
+    protected void OnAddBookClick(String name){
+        String BookName = addName.getText();
+
 
     }
 }
