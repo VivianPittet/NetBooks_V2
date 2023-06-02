@@ -1,6 +1,7 @@
 package com.example.netbooks_v2.model;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.FileSystemNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,15 +17,23 @@ public class Library {
     }
 
     public void readCSV(String pathFile) {
-        //String pathFile = "Ressources_Data_Netbooks.csv";
+        String Line= "";
         try {
             BufferedReader br = new BufferedReader(new FileReader(pathFile));
+            while((Line = br.readLine())!= null) //récupérer chaques lignes de notre csv et l'insérer dans la variable Line
+                System.out.println(Line);
             System.out.println("le fichier a été récupérer");
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("le fichier n'a pas été récupérer");
         }
-    }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
+
+
 
 
     /**
