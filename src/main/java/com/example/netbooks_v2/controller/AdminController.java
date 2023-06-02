@@ -66,14 +66,17 @@ public class AdminController implements Initializable {
         switch(SearchChoice.getValue()){
             case "Name":
                 String pathimage="not the good path";
-                Book SearchedBook = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
+                SearchBar.sort(bListView);
+
+
+              /*  Book SearchedBook = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
                 if (SearchedBook != null) {
                     pathimage = SearchedBook.getImagePath();
                     bName.setText("Name: "+ SearchedBook.getName());
                     bWriter.setText("Writer: " + SearchedBook.getWriter());
                     bType.setText("Type: " + SearchedBook.getType());
                     bPages.setText("Pages: " + Integer.toString(SearchedBook.getPages()));
-            }
+            }*/
                 try{
                     Image img= new Image("file:"+pathimage);
                     SearchPicture.setImage(img);

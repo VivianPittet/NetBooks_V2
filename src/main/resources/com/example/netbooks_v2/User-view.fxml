@@ -11,9 +11,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="SearchWriter" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
-                        <Button mnemonicParsing="false" text="SearchName" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
-                        <Button mnemonicParsing="false" text="SearchType" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                        <ListView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button mnemonicParsing="false" text="SearchWriter" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="60.0" />
+                        <Button mnemonicParsing="false" onAction="#btnsarchBookName" text="SearchName" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="30.0" />
+                        <Button mnemonicParsing="false" onAction="#btnsarchBookType" text="SearchType" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -21,12 +22,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" onAction="#sortByName" text="SortName" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0">
+                        <ListView onEditStart="#onsortButtonClick" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                        <RadioButton mnemonicParsing="false" onAction="#btnsortBookName" text="SortName" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="60.0">
                            <toggleGroup>
                               <ToggleGroup fx:id="sort" />
                            </toggleGroup></RadioButton>
-                        <RadioButton mnemonicParsing="false" onAction="#sortByWriter" text="SortWriter" toggleGroup="$sort" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
-                        <RadioButton mnemonicParsing="false" onAction="#sortByType" text="SortType" toggleGroup="$sort" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                        <RadioButton mnemonicParsing="false" onAction="#btnsortBookWriter" text="SortWriter" toggleGroup="$sort" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="30.0" />
+                        <RadioButton mnemonicParsing="false" onAction="#btnsortBookType" text="SortType" toggleGroup="$sort" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -37,6 +39,6 @@
           </TitledPane>
         </panes>
       </Accordion>
-      <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Search" AnchorPane.bottomAnchor="350.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <TextArea fx:id="Search" prefHeight="200.0" prefWidth="200.0" promptText="Search" AnchorPane.bottomAnchor="350.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
    </children>
 </AnchorPane>
