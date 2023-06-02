@@ -1,7 +1,12 @@
 package com.example.netbooks_v2.model;
 
+import java.io.FileNotFoundException;
+import java.nio.file.FileSystemNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 
 public class Library {
     public ArrayList<Book> BookLibrary = new ArrayList<Book>();
@@ -10,14 +15,27 @@ public class Library {
         return BookLibrary;
     }
 
+    public void readCSV(String pathFile) {
+        //String pathFile = "Ressources_Data_Netbooks.csv";
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(pathFile));
+            System.out.println("le fichier a été récupérer");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("le fichier n'a pas été récupérer");
+        }
+    }
+
+
     /**
-     * Allow to add one bok in the library
+     * Allow to add one book in the library
      * @param book
      */
     public void addBook(Book book) {
         BookLibrary.add(book);
 
     }
+
 
     /**
      * Allow to add a list of Book in the library
