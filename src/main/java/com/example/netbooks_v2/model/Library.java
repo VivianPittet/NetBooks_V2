@@ -63,6 +63,9 @@ public class Library {
         BookLibrary.add(book);
 
     }
+    public boolean deleteBook(Book book){
+        return BookLibrary.remove(book);
+    }
 
 
     /**

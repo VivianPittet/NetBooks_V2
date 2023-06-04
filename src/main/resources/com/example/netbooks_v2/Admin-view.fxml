@@ -72,18 +72,22 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="addName" layoutX="14.0" layoutY="14.0" promptText="BookName">
+                        <TextField fx:id="addName" layoutX="14.0" layoutY="14.0" onMouseClicked="#clearErrorLabel" promptText="BookName">
                            <font>
                               <Font name="Arial Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="addWriter" layoutX="15.0" layoutY="52.0" promptText="Writer" />
-                        <TextField fx:id="addType" layoutX="15.0" layoutY="91.0" promptText="Type" />
-                        <TextField fx:id="addPages" layoutX="202.0" layoutY="14.0" promptText="Pages" />
-                        <TextField fx:id="addPrice" layoutX="203.0" layoutY="52.0" promptText="Price" />
-                        <Button layoutX="388.0" layoutY="91.0" mnemonicParsing="false" text="Add" />
-                        <Button layoutX="233.0" layoutY="91.0" mnemonicParsing="false" text="Select Picture" />
+                        <TextField fx:id="addWriter" layoutX="15.0" layoutY="52.0" onMouseClicked="#clearErrorLabel" promptText="Writer" />
+                        <TextField fx:id="addType" layoutX="15.0" layoutY="91.0" onMouseClicked="#clearErrorLabel" promptText="Type" />
+                        <TextField fx:id="addPages" layoutX="202.0" layoutY="14.0" onMouseClicked="#clearErrorLabel" promptText="Pages" />
+                        <TextField fx:id="addPrice" layoutX="203.0" layoutY="52.0" onMouseClicked="#clearErrorLabel" promptText="Price" />
+                        <Button layoutX="388.0" layoutY="91.0" mnemonicParsing="false" onAction="#OnAddBookClick" text="Add" />
+                        <Button fx:id="selectPicture" layoutX="233.0" layoutY="91.0" mnemonicParsing="false" onAction="#onSelectPictureClick" text="Select Picture" />
                         <Line endX="-59.666656494140625" endY="295.6666564941406" layoutX="524.0" layoutY="76.0" startX="-59.666656494140625" startY="-76.99999237060547" />
+                        <Label fx:id="errorMessage" layoutX="15.0" layoutY="244.0">
+                           <font>
+                              <Font name="Arial Black" size="20.0" />
+                           </font></Label>
                      </children></AnchorPane>
             </content>
           </TitledPane>
@@ -91,7 +95,23 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="14.0" layoutY="14.0" promptText="Search Book" />
+                        <TextField fx:id="bToDelete" layoutX="14.0" layoutY="14.0" promptText="Search Book" />
+                        <Button fx:id="deleteSearch" layoutX="138.0" layoutY="89.0" mnemonicParsing="false" onAction="#OnSearhButtonClickDelete" text="Search" />
+                        <Button fx:id="Delete" layoutX="138.0" layoutY="149.0" mnemonicParsing="false" onAction="#OnDeleteButtonClick" text="Delete" visible="false" />
+                        <ImageView fx:id="imgBToDelete" fitHeight="230.0" fitWidth="200.0" layoutX="736.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                        <Label fx:id="bNameToDelete" layoutX="387.0" layoutY="57.0" />
+                        <Pane fx:id="ConfirmDelete" layoutX="152.0" layoutY="136.0" prefHeight="228.0" prefWidth="395.0" visible="false">
+                           <children>
+                              <Button layoutX="123.0" layoutY="136.0" mnemonicParsing="false" onAction="#OnYesDeleteButtonClick" text="Yes" />
+                              <Button layoutX="234.0" layoutY="136.0" mnemonicParsing="false" onAction="#OnNotDeleteButtonClick" text="No" />
+                              <Label fx:id="deleteMessage" layoutX="26.0" layoutY="58.0" text="Do you realy want to delete this book ?">
+                                 <font>
+                                    <Font name="Arial Black" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="finishButton" layoutX="321.0" layoutY="161.0" mnemonicParsing="false" onAction="#OnfinishButtonClick" text="Finish" visible="false" />
+                           </children>
+                        </Pane>
                      </children></AnchorPane>
               </content>
             </TitledPane>
