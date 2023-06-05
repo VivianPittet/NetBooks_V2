@@ -25,7 +25,6 @@ public class Admin extends Person implements Tools{
                 SearchedBook = b;
             }
         }
-        System.out.println("SearchName succes");
         return SearchedBook;
     }
 
@@ -42,7 +41,6 @@ public class Admin extends Person implements Tools{
                 searchedWriter.add(b);
             }
         }
-        System.out.println("succes writer");
         return searchedWriter;
     }
     /**
@@ -58,7 +56,6 @@ public class Admin extends Person implements Tools{
                 searchedType.add(b);
             }
         }
-        System.out.println("Succes type");
         return searchedType;
     }
     /**
