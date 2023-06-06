@@ -17,5 +17,19 @@ public class Person {
             return false;
     }
 
+    public String getUserName() {
+        return UserName;
+    }
 
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getPassWorld() {
+        return PassWorld;
+    }
+
+    public void setPassWorld(String passWorld) {
+        PassWorld = passWorld;
+    }
 }

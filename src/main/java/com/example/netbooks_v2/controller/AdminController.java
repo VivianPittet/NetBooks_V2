@@ -1,22 +1,37 @@
 package com.example.netbooks_v2.controller;
 
 import com.example.netbooks_v2.HelloApplication;
+import com.example.netbooks_v2.model.Admin;
 import com.example.netbooks_v2.model.Book;
+import com.example.netbooks_v2.model.Person;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
+    @FXML
+    private AnchorPane adminView;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     // Id for search method
     ArrayList<Book> blib = HelloApplication.LibraryTest1.getBookLibrary();
     @FXML
@@ -99,6 +114,17 @@ public class AdminController implements Initializable {
     private Button backModify;
     @FXML
     private Label errorModify;
+
+    //ID for connexion panel
+    @FXML
+    private Pane logInPane;
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField password;
+    @FXML
+    private Button logIn;
+
 
 
 
@@ -430,6 +456,37 @@ public class AdminController implements Initializable {
         bTypeModify.clear();
         pathImageToAdd="";
     }
+    @FXML
+    protected void onLogInButtonClick(){
+        if (username.getLength()>0 && password.getLength()>0){
+            for(Person p : HelloApplication.allPeople.getList()){
+                if(p.getUserName().equals(username.getText())&&p.getPassWorld().equals(password.getText())){
+                    if(p.getClass()== Admin.class){
+                        System.out.println("Lancer l'admin view");
+                        logInPane.setVisible(false);
+                        adminView.setVisible(true);
+                        break;
+                    }else{
+                        try{//switchToUserView();
+
+                        }catch(Exception e){
+                            System.out.println("Error");
+
+                        }
+                        System.out.println("Lancer User view");
+                        break;
+                    }
+                }
+            }
+        }
+    }
+   /* public void switchToUserView(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("User-view"));
+        stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}*/
+
 
 }
 
