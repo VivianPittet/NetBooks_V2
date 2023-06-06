@@ -2,16 +2,16 @@ package com.example.netbooks_v2.controller;
 
 import com.example.netbooks_v2.HelloApplication;
 import com.example.netbooks_v2.model.Book;
-import com.example.netbooks_v2.model.Library;
-import javafx.beans.DefaultProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -42,22 +42,65 @@ public class AdminController implements Initializable {
     private Button ShowBook;
     @FXML
     private Button backButton;
+    private Book bookToShow;
+
 
     // ID for add method
     @FXML
     private TextField addName;
-
     @FXML
     private TextField addWriter;
-
     @FXML
     private TextField addType;
-
     @FXML
     private TextField addPages;
-
     @FXML
     private TextField addPrice;
+    private String pathImageToAdd;
+    @FXML
+    private Label errorMessage;
+
+    // ID for delete method
+    @FXML
+    private TextField bToDelete;
+    @FXML
+    private Button deleteSearch;
+    @FXML
+    private Button Delete;
+    @FXML
+    private Label bNameToDelete;
+    @FXML
+    private ImageView imgBToDelete;
+    private Book ToDelete;
+    @FXML
+    private Pane ConfirmDelete;
+    @FXML
+    private Label deleteMessage;
+    @FXML
+    private Button finishButton;
+
+    // ID for modify method
+
+    @FXML
+    private Button bModify;
+    @FXML
+    private TextField bNameModify;
+    @FXML
+    private TextField bWriterModify;
+    @FXML
+    private TextField bTypeModify;
+    @FXML
+    private TextField bPriceModify;
+    @FXML
+    private TextField bPagesModify;
+    @FXML
+    private Pane paneModify;
+    @FXML
+    private Button backModify;
+    @FXML
+    private Label errorModify;
+
+
 
     /*@FXML
     protected void sortByName() {
@@ -94,6 +137,7 @@ public class AdminController implements Initializable {
         bPages.setText("");
         SearchPicture.setVisible(false);
         bListView.getItems().clear();
+        bModify.setVisible(false);
 
         }
 
@@ -108,13 +152,13 @@ public class AdminController implements Initializable {
         switch(SearchChoice.getValue()) {
             case "Name":
                 String pathimage = "not the good path";
-                Book SearchedBook = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
-                if (SearchedBook != null) {
-                    pathimage = SearchedBook.getImagePath();
-                    bName.setText("Name: " + SearchedBook.getName());
-                    bWriter.setText("Writer: " + SearchedBook.getWriter());
-                    bType.setText("Type: " + SearchedBook.getType());
-                    bPages.setText("Pages: " + Integer.toString(SearchedBook.getPages()));
+                bookToShow = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
+                if (bookToShow != null) {
+                    pathimage = bookToShow.getImagePath();
+                    bName.setText("Name: " + bookToShow.getName());
+                    bWriter.setText("Writer: " + bookToShow.getWriter());
+                    bType.setText("Type: " + bookToShow.getType());
+                    bPages.setText("Pages: " + Integer.toString(bookToShow.getPages()));
                     try {
                         Image img = new Image("file:" + pathimage);
                         SearchPicture.setVisible(true);
@@ -122,7 +166,7 @@ public class AdminController implements Initializable {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-
+                    bModify.setVisible(true);
                 }
                 else{
                     bName.setText("No book found");
@@ -174,7 +218,7 @@ public class AdminController implements Initializable {
      */
     @FXML
     protected void onShowBookButtonClick(){
-        Book bookToShow = HelloApplication.Vivian.SearchName(bListView.getSelectionModel().getSelectedItem(),blib);
+        bookToShow = HelloApplication.Vivian.SearchName(bListView.getSelectionModel().getSelectedItem(),blib);
         if (bookToShow!=null){
             bScrollPane.setVisible(false);
             bName.setText("Name: "+ bookToShow.getName());
@@ -188,12 +232,13 @@ public class AdminController implements Initializable {
             }catch(Exception e){
                 System.out.println(e.getMessage());
             }
+            bModify.setVisible(true);
         }
         backButton.setVisible(true);
     }
 
     /**
-     * Back to the liste to select a book
+     * Back to the list to select a book
      * Set book list visibility true
      */
     @FXML
@@ -205,6 +250,7 @@ public class AdminController implements Initializable {
         bPages.setText("");
         SearchPicture.setVisible(false);
         backButton.setVisible(false);
+        bModify.setVisible(false);
     }
 
     /**
@@ -217,10 +263,174 @@ public class AdminController implements Initializable {
         SearchChoice.getItems().addAll(CBName);
 
     }
-    @FXML
-    protected void OnAddBookClick(String name){
-        String BookName = addName.getText();
 
+    //ADD METHOD
+    @FXML
+    protected void onSelectPictureClick(){
+        FileChooser FC = new FileChooser();
+        File SelectedFile = FC.showOpenDialog(null);
+        try{
+            pathImageToAdd = "BookPictures/"+SelectedFile.getName();
+        } catch(Exception e){}
 
     }
+
+    /**
+     * Verify that text field are not empty.
+     * Create a book and put it in the library
+     */
+    @FXML
+    protected void OnAddBookClick(){
+        String abName;
+        String abWriter;
+        String abType;
+        float abPrice;
+        int abPages;
+        if ( addWriter.getLength()>0 && addType.getLength()>0 && addName.getLength()>0 && addPages.getLength()>0 && addPrice.getLength()>0 ) {
+            abWriter = addWriter.getText();
+            abName = addName.getText();
+            abType = addType.getText();
+            try {
+                abPrice = Float.parseFloat(addPrice.getText());
+                abPages = Integer.parseInt(addPages.getText());
+                HelloApplication.LibraryTest1.addBook(new Book(abName, abPages, abWriter, abType, pathImageToAdd, abPrice));
+                errorMessage.setText("Book added !");
+                addWriter.clear();
+                addPrice.clear();
+                addPages.clear();
+                addType.clear();
+                addName.clear();
+
+            } catch (Exception e) {
+                errorMessage.setText("Need number for price and pages");
+            }
+        }
+        else{
+            errorMessage.setText("Please fill all the book's specification");
+        }
+
+    }
+    @FXML
+    protected void clearErrorLabel(){
+        errorMessage.setText("");
+    }
+
+    //DELETE METHOD
+
+    /**
+     * Search the book. If found, set the delete button true. Else put a message that the book isn't found.
+     */
+    @FXML
+    protected void OnSearhButtonClickDelete(){
+        String PathImage = "not the good path";
+        ToDelete = HelloApplication.Vivian.SearchName(bToDelete.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
+        if (ToDelete != null) {
+            PathImage = ToDelete.getImagePath();
+            bNameToDelete.setText("Name: " + ToDelete.getName());
+            try {
+                Image img = new Image("file:" + PathImage);
+                imgBToDelete.setVisible(true);
+                imgBToDelete.setImage(img);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            Delete.setVisible(true);
+        }
+        else{
+            bNameToDelete.setText("No book found");
+        }
+    }
+
+    /**
+     * Set the confirmation option true
+     */
+    @FXML
+    protected void OnDeleteButtonClick(){
+        ConfirmDelete.setVisible(true);
+    }
+
+    /**
+     * 1) Delete the book and put a confirmation message
+     * 2) If the book can't be deleted, put a message error
+     * Set the finish button visible
+     */
+    @FXML
+    protected void OnYesDeleteButtonClick(){
+        if(HelloApplication.LibraryTest1.deleteBook(ToDelete)){ // supprime et renvoie true si le livre est supprimé
+            deleteMessage.setText("Book deleted");
+            deleteMessage.setTextFill(Color.GREEN);
+        }else{
+            deleteMessage.setText("Error in delete processing, retry");
+            deleteMessage.setTextFill(Color.RED);
+        }
+        finishButton.setVisible(true);
+    }
+
+    /**
+     * Clear all and return to the default page
+     * Used by finish button and "not delte button"
+     */
+    @FXML
+    protected void OnfinishButtonClick(){
+        ConfirmDelete.setVisible(false);
+        bNameToDelete.setText("");
+        bToDelete.clear();
+        imgBToDelete.setVisible(false);
+        Delete.setVisible(false);
+    }
+    // Modify method
+
+    @FXML
+    protected void onModifiyButtonClick(){
+        paneModify.setVisible(true); // Set the modify pane visible
+
+    }
+    @FXML
+    protected void OnConfirmModificationClick(){
+        pathImageToAdd = "";
+        if (!bNameModify.getText().equals("")){
+            bookToShow.setName(bNameModify.getText());
+        }
+        if (!bWriter.getText().equals("")){
+            bookToShow.setWriter(bWriter.getText());
+        }
+        if (!bTypeModify.getText().equals("")){
+            bookToShow.setType(bTypeModify.getText());
+        }
+        if (!bPriceModify.getText().equals("")){
+            try {
+                bookToShow.setPrice(Float.parseFloat(bPriceModify.getText()));
+            }catch(Exception e){errorModify.setText("Please enter un number for price");
+                errorModify.setTextFill(Color.RED);
+            }
+        }
+        if (!bPagesModify.getText().equals("")){
+            try {
+                bookToShow.setPages(Integer.parseInt(bNameModify.getText()));
+            }catch(Exception e){errorModify.setText("Please enter un number for pages");
+                errorModify.setTextFill(Color.RED);
+            }
+        }
+        if (!pathImageToAdd.equals("")){
+            bookToShow.setImagePath(pathImageToAdd);
+        }
+        errorModify.setText("Book modified !");
+        errorModify.setTextFill(Color.GREEN);
+        backModify.setVisible(true);
+    }
+    @FXML
+    protected void onBackModifyClick(){
+        SearchChoiceSelected();
+        paneModify.setVisible(false);
+        backModify.setVisible(false);
+        bNameModify.clear();
+        bWriterModify.clear();
+        bPagesModify.clear();
+        bPriceModify.clear();
+        bTypeModify.clear();
+        pathImageToAdd="";
+    }
+
 }
+
+
