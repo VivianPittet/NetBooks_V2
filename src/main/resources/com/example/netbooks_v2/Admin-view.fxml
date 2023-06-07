@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="558.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.netbooks_v2.controller.AdminController">
    <children>
-      <Accordion layoutX="36.0" layoutY="27.0" prefHeight="500.0" prefWidth="1000.0">
+      <Accordion layoutX="41.0" layoutY="29.0" prefHeight="500.0" prefWidth="1000.0" visible="false">
         <panes>
           <TitledPane animated="false" text="Search and modify">
             <content>
@@ -135,5 +135,12 @@
           </TitledPane>
         </panes>
       </Accordion>
+      <Pane prefHeight="558.0" prefWidth="1200.0">
+         <children>
+            <TextField fx:id="username" layoutX="466.0" layoutY="204.0" prefHeight="25.0" prefWidth="268.0" promptText="UserName" />
+            <TextField fx:id="password" layoutX="466.0" layoutY="254.0" prefHeight="25.0" prefWidth="268.0" promptText="Password" />
+            <Button fx:id="logIn" layoutX="734.0" layoutY="305.0" mnemonicParsing="false" onAction="#onLogInButtonClick" text="Log in" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

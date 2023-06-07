@@ -14,7 +14,10 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     public static Library LibraryTest1;
     public static Admin Vivian;
-    public static Users Imen;
+    public static Admin Candice;
+    public static Admin Himen;
+    public static Users Fred;
+    public static PersonList allPeople;
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Admin-view.fxml"));
@@ -26,7 +29,13 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         Vivian = new Admin("Vivian","0000");
-        Imen =new Users("Imen","0000");
+        Candice = new Admin("Candice","0001");
+        Himen = new Admin("Himen", "0002");
+        Fred = new Users("Fred","0003");
+        allPeople= new PersonList(Vivian);
+        allPeople.addPerson(Candice);
+        allPeople.addPerson(Fred);
+        allPeople.addPerson(Himen);
         Book ToucherLesEtoiles = new Book("Vouloir toucher les étoiles", 249,"Mike Horn","Adventure","none",15f);
         Book MikeHorn = new Book("Latitude 0",352,"Mike Horn","Adventure","BookPictures/LATITUDE 0.png",22.8445f);
         Book cherub = new Book("100 jours en enfer", 448,"Robert Muchamore", "SF","BookPictures/cherub1.png", 8.2f);
