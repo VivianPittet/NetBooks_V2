@@ -23,12 +23,12 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ListView onEditStart="#onsortButtonClick" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
-                        <RadioButton mnemonicParsing="false" onAction="#btnsortBookName" text="SortName" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="60.0">
+                        <RadioButton mnemonicParsing="false" text="SortName " AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <RadioButton mnemonicParsing="false" onAction="#onSortButtonClickAlpha" text="SortType" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="60.0">
                            <toggleGroup>
                               <ToggleGroup fx:id="sort" />
                            </toggleGroup></RadioButton>
-                        <RadioButton mnemonicParsing="false" onAction="#btnsortBookWriter" text="SortWriter" toggleGroup="$sort" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="30.0" />
-                        <RadioButton mnemonicParsing="false" onAction="#btnsortBookType" text="SortType" toggleGroup="$sort" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0" />
+                        <RadioButton mnemonicParsing="false" onAction="#onSortButtonClickYears" text="SortWriter" toggleGroup="$sort" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="30.0" />
                      </children></AnchorPane>
             </content>
           </TitledPane>
