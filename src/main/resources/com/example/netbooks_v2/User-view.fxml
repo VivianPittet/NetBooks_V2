@@ -10,11 +10,11 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <TextField fx:id="BooksName" alignment="TOP_LEFT" />
-    <Button mnemonicParsing="false" onAction="#sortByName" text="SortByName" />
-    <Button mnemonicParsing="false" onAction="#sortByWriter" text="SortByWriter" />
-    <Button mnemonicParsing="false" onAction="#sortByType" text="SortByType" />
+    <Button mnemonicParsing="false" text="SortByName" />
+    <Button mnemonicParsing="false" text="SortByWriter" />
+    <Button mnemonicParsing="false" text="SortByType" />
 
     <Label fx:id="welcomeText" text="hfdhgfh" />
-    <Button onAction="#onSearchButtonClick" text="SearcheByName" />
+    <Button text="SearcheByName" />
     <ImageView fx:id="picture" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
 </VBox>
