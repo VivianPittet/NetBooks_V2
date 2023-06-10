@@ -5,6 +5,10 @@ import com.example.netbooks_v2.model.Person;
 
 import java.util.ArrayList;
 
+/**
+ * Class with all people who have a account
+ */
+
 public class PersonList {
     private ArrayList<Person> allPerson = new ArrayList<Person>();
 

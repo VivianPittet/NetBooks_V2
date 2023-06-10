@@ -1,5 +1,9 @@
 package com.example.netbooks_v2.model;
 
+/**
+ * Class book with all attribute and getter setter
+ */
+
 public class Book { private float price;
     private String Name;
     private int Pages;
