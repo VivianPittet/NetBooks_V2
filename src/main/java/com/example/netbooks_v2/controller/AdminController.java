@@ -6,32 +6,21 @@ import com.example.netbooks_v2.model.Book;
 import com.example.netbooks_v2.model.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
     @FXML
-    private AnchorPane adminView;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
     // Id for search method
     ArrayList<Book> blib = HelloApplication.LibraryTest1.getBookLibrary();
     @FXML
@@ -117,13 +106,13 @@ public class AdminController implements Initializable {
 
     //ID for connexion panel
     @FXML
+    private Accordion adminView;
+    @FXML
     private Pane logInPane;
     @FXML
     private TextField username;
     @FXML
     private TextField password;
-    @FXML
-    private Button logIn;
 
 
 
@@ -154,7 +143,10 @@ public class AdminController implements Initializable {
      * Used to clear the page when you change the search method
      */
     @FXML
-    protected void SearchChoiceSelected() {
+    protected void resetSearchPage() {
+        pathImageToAdd="";
+        ShowBook.setVisible(false);
+        bModify.setVisible(false);
         SearchBar.setDisable(false);
         bScrollPane.setVisible(false);
         bName.setText("");
@@ -163,7 +155,6 @@ public class AdminController implements Initializable {
         bPages.setText("");
         SearchPicture.setVisible(false);
         bListView.getItems().clear();
-        bModify.setVisible(false);
 
         }
 
@@ -173,6 +164,7 @@ public class AdminController implements Initializable {
      */
     @FXML
     protected void onSearchButtonClick(){
+        resetSearchPage();
         bListView.getItems().clear(); // Clear the list, else the books appear many times
 
         switch(SearchChoice.getValue()) {
@@ -256,7 +248,7 @@ public class AdminController implements Initializable {
                 SearchPicture.setVisible(true);
                 SearchPicture.setImage(img);
             }catch(Exception e){
-                System.out.println(e.getMessage());
+                System.out.println("Erreur in show book method");
             }
             bModify.setVisible(true);
         }
@@ -297,7 +289,10 @@ public class AdminController implements Initializable {
         File SelectedFile = FC.showOpenDialog(null);
         try{
             pathImageToAdd = "BookPictures/"+SelectedFile.getName();
-        } catch(Exception e){}
+            System.out.println("PathImage loaded");
+        } catch(Exception e){
+            System.out.println("Erreur chargement image");
+        }
 
     }
 
@@ -406,19 +401,31 @@ public class AdminController implements Initializable {
     }
     // Modify method
 
+    /**
+     * Show the modifcation pane et show the back button
+     */
+
     @FXML
     protected void onModifiyButtonClick(){
         paneModify.setVisible(true); // Set the modify pane visible
+        backModify.setVisible(true);
 
     }
+
+    /**
+     * Take the new data and mofify the book
+     * If the textfield are empty, the book attribut is not changed
+     * Put a confirmation message
+     * Verify that pages and float are number
+     */
     @FXML
     protected void OnConfirmModificationClick(){
-        pathImageToAdd = "";
+        resetModifyPane(); // Used to clear the panel in the case of not cleared before
         if (!bNameModify.getText().equals("")){
             bookToShow.setName(bNameModify.getText());
         }
-        if (!bWriter.getText().equals("")){
-            bookToShow.setWriter(bWriter.getText());
+        if (!bWriterModify.getText().equals("")){
+            bookToShow.setWriter(bWriterModify.getText());
         }
         if (!bTypeModify.getText().equals("")){
             bookToShow.setType(bTypeModify.getText());
@@ -438,26 +445,49 @@ public class AdminController implements Initializable {
             }
         }
         if (!pathImageToAdd.equals("")){
-            bookToShow.setImagePath(pathImageToAdd);
+            bookToShow.setImagePath(pathImageToAdd);;
+            pathImageToAdd=""; //The future image will not modified in case of no usage of textfield
         }
         errorModify.setText("Book modified !");
         errorModify.setTextFill(Color.GREEN);
-        backModify.setVisible(true);
     }
+
+    /**
+     * Used to reset the modify pane to default view
+     */
     @FXML
-    protected void onBackModifyClick(){
-        SearchChoiceSelected();
-        paneModify.setVisible(false);
-        backModify.setVisible(false);
+    protected void resetModifyPane(){
         bNameModify.clear();
         bWriterModify.clear();
         bPagesModify.clear();
         bPriceModify.clear();
         bTypeModify.clear();
-        pathImageToAdd="";
+        errorModify.setText("");
+
     }
+
+    /**
+     * Reset de modification pane
+     * Make de pane and button disapear
+     */
     @FXML
-    protected void onLogInButtonClick(){
+    protected void onBackModifyClick(){
+        resetModifyPane();
+        paneModify.setVisible(false);
+        backModify.setVisible(false);
+
+    }
+
+    // Log in method
+
+    /**
+     * Go through the person list and check if he's a user or admin
+     * If admin, show the admin view
+     * If user, load the user view
+     * @param event used to load the user view on logIn button click
+     */
+    @FXML
+    protected void onLogInButtonClick(ActionEvent event){
         if (username.getLength()>0 && password.getLength()>0){
             for(Person p : HelloApplication.allPeople.getList()){
                 if(p.getUserName().equals(username.getText())&&p.getPassWorld().equals(password.getText())){
@@ -467,7 +497,7 @@ public class AdminController implements Initializable {
                         adminView.setVisible(true);
                         break;
                     }else{
-                        try{//switchToUserView();
+                        try{HelloApplication.switchScene(event);
 
                         }catch(Exception e){
                             System.out.println("Error");
@@ -480,13 +510,6 @@ public class AdminController implements Initializable {
             }
         }
     }
-   /* public void switchToUserView(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("User-view"));
-        stage =(Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();}*/
-
 
 }
 
