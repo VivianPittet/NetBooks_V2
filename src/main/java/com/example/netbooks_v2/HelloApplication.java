@@ -38,6 +38,7 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+
         Vivian = new Admin("Vivian","0000");
         Candice = new Admin("Candice","0001");
         Himen = new Admin("Himen", "0002");
@@ -50,12 +51,13 @@ public class HelloApplication extends Application {
         Book MikeHorn = new Book("Latitude 0",352,"Mike Horn","Adventure","BookPictures/LATITUDE 0.png",22.8445f);
         Book cherub = new Book("100 jours en enfer", 448,"Robert Muchamore", "SF","BookPictures/cherub1.png", 8.2f);
         LibraryTest1 = new Library();
-        LibraryTest1.addBook(MikeHorn);
-        LibraryTest1.addBook(cherub);
-        LibraryTest1.addBook(ToucherLesEtoiles);
-        //LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
-        LibraryTest1.AddInCsv("aaa", "bbb", 12,"ccc",25,"ccc","DataBooks/Resources_Data_Netbooks.csv" );
+        //LibraryTest1.addBook(MikeHorn);
+        //LibraryTest1.addBook(cherub);
+        //LibraryTest1.addBook(ToucherLesEtoiles);
         LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
+        //LibraryTest1.AddInCsv("aaa", "bbb", 12,"ccc",25,"ccc","DataBooks/Resources_Data_Netbooks.csv" );
+
+
         launch();
     }
     public static void switchScene (ActionEvent event){
