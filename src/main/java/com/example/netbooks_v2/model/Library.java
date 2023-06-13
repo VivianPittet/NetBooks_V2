@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.util.jar.Attributes;
 
 
 public class Library {
@@ -14,42 +16,57 @@ public class Library {
     public ArrayList<Book> getBookLibrary() {
         return BookLibrary;
     }
-    public ArrayList< String > NameList= new ArrayList<String>();
-    public ArrayList< String > WriterList= new ArrayList<String>();
-    public ArrayList<String> PageList= new ArrayList<String>();
-    public ArrayList< String > TypeList=  new ArrayList<String>();
-    public ArrayList< String > PriceList=new ArrayList<String>();
+
 
     /**
      * Method for read CSV and take all value at one index and put it in a list.
      *
      * @param pathFile
      */
-    public void readCSV(String pathFile) {
+    public boolean readCSV(String pathFile) {
+        boolean confirmationAdded = false;
+        ArrayList<String> NameList = new ArrayList<String>();
+        ArrayList<String> WriterList = new ArrayList<String>();
+        ArrayList<String> PageList = new ArrayList<String>();
+        ArrayList<String> TypeList = new ArrayList<String>();
+        ArrayList<String> PriceList = new ArrayList<String>();
+        ArrayList<String> PathImageList = new ArrayList<>();
+        String essai = "    Salut j'essai un truck    ";
+        essai = essai.trim();
+        System.out.println(essai);
 
         String Line = "";
         String[] splitLine;
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(pathFile));
-            while ((Line = br.readLine()) != null){ //récupérer chaques lignes de notre csv et l'insérer dans la variable Line
+            Line = br.readLine(); // Enlève la première ligne;
+            while ((Line = br.readLine()) != null) {//récupérer chaques lignes de notre csv et l'insérer dans la variable Line
                 splitLine = Line.split(",");
-                NameList.add(splitLine[0]);
-                WriterList.add(splitLine[1]); //comment faire avancer pour prendre la colonne 2
-                PageList.add(splitLine[2]);
-                TypeList.add(splitLine[3]);
-                PriceList.add(splitLine[4]);
+                System.out.println(Arrays.toString(splitLine));
+                NameList.add(splitLine[0].trim()); //enlève les espaces en début et fin
+                WriterList.add(splitLine[1].trim()); //comment faire avancer pour prendre la colonne 2
+                PageList.add(splitLine[2].trim());
+                TypeList.add(splitLine[3].trim());
+                PriceList.add(splitLine[4].trim());
+                PathImageList.add(splitLine[5].trim());
+                /*System.out.println(NameList);
+                 System.out.println(WriterList);
+                 System.out.println(PageList);
+                 System.out.println(TypeList);
+                 System.out.println(PriceList);*/
+                }
+                for (int i = 0; i+1 <= NameList.size(); i++) {
+                    addBook(new Book(NameList.get(i), Integer.parseInt(PageList.get(i)), WriterList.get(i), TypeList.get(i), PathImageList.get(i),Float.parseFloat(PriceList.get(i))));
+                confirmationAdded=true;
+                System.out.println("livre ajouté");
+
             }
-            System.out.println(NameList);
-            System.out.println(WriterList);
-            System.out.println(PageList);
-            System.out.println(TypeList);
-            System.out.println(PriceList);
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("le fichier n'a pas été récupérer");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        } return confirmationAdded;
     }
 
 

@@ -41,10 +41,10 @@ public class HelloApplication extends Application {
         Vivian = new Admin("Vivian","0000");
         Candice = new Admin("Candice","0001");
         Himen = new Admin("Himen", "0002");
-        Fred = new Users("Fred","0003");
         allPeople= new PersonList(Vivian);
+        allPeople.addPerson(new Admin("AdminTest","0"));
+        allPeople.addPerson(new Users("UserTest","0"));
         allPeople.addPerson(Candice);
-        allPeople.addPerson(Fred);
         allPeople.addPerson(Himen);
         Book ToucherLesEtoiles = new Book("Vouloir toucher les étoiles", 249,"Mike Horn","Adventure","none",15f);
         Book MikeHorn = new Book("Latitude 0",352,"Mike Horn","Adventure","BookPictures/LATITUDE 0.png",22.8445f);
@@ -53,7 +53,7 @@ public class HelloApplication extends Application {
         LibraryTest1.addBook(MikeHorn);
         LibraryTest1.addBook(cherub);
         LibraryTest1.addBook(ToucherLesEtoiles);
-        LibraryTest1.AddInCsv("aaa", "bbb", 12,"ccc",25,"ccc","DataBooks/Resources_Data_Netbooks.csv" );
+        //ibraryTest1.AddInCsv("aaa", "bbb", 12,"ccc",25,"ccc","DataBooks/Resources_Data_Netbooks.csv" );
         LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
         launch();
     }

@@ -17,6 +17,7 @@ public class Book { private float price;
         Writer = writer;
         Type = type;
         ImagePath = imagePath;
+        this.price=price;
     }
 
     public String getName() {

@@ -20,9 +20,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
-    @FXML
     // Id for search method
-    ArrayList<Book> blib = HelloApplication.LibraryTest1.getBookLibrary();
     @FXML
     private Label bName;
     @FXML
@@ -120,6 +118,7 @@ public class AdminController implements Initializable {
      */
     @FXML
     protected void resetSearchPage() {
+        backButton.setVisible(false);
         pathImageToAdd="";
         ShowBook.setVisible(false);
         bModify.setVisible(false);
@@ -208,7 +207,7 @@ public class AdminController implements Initializable {
      */
     @FXML
     protected void onShowBookButtonClick(){
-        bookToShow = HelloApplication.Vivian.SearchName(bListView.getSelectionModel().getSelectedItem(),blib);
+        bookToShow = HelloApplication.Vivian.SearchName(bListView.getSelectionModel().getSelectedItem(),HelloApplication.LibraryTest1.getBookLibrary());
         if (bookToShow!=null){
             bScrollPane.setVisible(false);
             bName.setText("Name: "+ bookToShow.getName());
@@ -395,6 +394,7 @@ public class AdminController implements Initializable {
 
     @FXML
     protected void onModifiyButtonClick(){
+        resetModifyPane(); // Used to clear the panel in the case of not cleared before
         paneModify.setVisible(true); // Set the modify pane visible
         backModify.setVisible(true);
 
@@ -408,7 +408,7 @@ public class AdminController implements Initializable {
      */
     @FXML
     protected void OnConfirmModificationClick(){
-        resetModifyPane(); // Used to clear the panel in the case of not cleared before
+        int bookIndex;
         if (!bNameModify.getText().equals("")){
             bookToShow.setName(bNameModify.getText());
         }
@@ -463,7 +463,7 @@ public class AdminController implements Initializable {
         resetModifyPane();
         paneModify.setVisible(false);
         backModify.setVisible(false);
-
+        resetSearchPage();
     }
 
     // Log in method
