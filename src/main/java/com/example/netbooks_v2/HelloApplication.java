@@ -46,15 +46,15 @@ public class HelloApplication extends Application {
         allPeople.addPerson(new Users("UserTest","0"));
         allPeople.addPerson(Candice);
         allPeople.addPerson(Himen);
-        Book ToucherLesEtoiles = new Book("Vouloir toucher les étoiles", 249,"Mike Horn","Adventure","none",15f);
+        /*Book ToucherLesEtoiles = new Book("Vouloir toucher les étoiles", 249,"Mike Horn","Adventure","none",15f);
         Book MikeHorn = new Book("Latitude 0",352,"Mike Horn","Adventure","BookPictures/LATITUDE 0.png",22.8445f);
         Book cherub = new Book("100 jours en enfer", 448,"Robert Muchamore", "SF","BookPictures/cherub1.png", 8.2f);
-        LibraryTest1 = new Library();
+
         LibraryTest1.addBook(MikeHorn);
         LibraryTest1.addBook(cherub);
-        LibraryTest1.addBook(ToucherLesEtoiles);
-        //ibraryTest1.AddInCsv("aaa", "bbb", 12,"ccc",25,"ccc","DataBooks/Resources_Data_Netbooks.csv" );
-        LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
+        LibraryTest1.addBook(ToucherLesEtoiles);*/
+        LibraryTest1 = new Library();
+
         launch();
     }
 

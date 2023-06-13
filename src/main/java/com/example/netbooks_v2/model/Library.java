@@ -31,10 +31,6 @@ public class Library {
         ArrayList<String> TypeList = new ArrayList<String>();
         ArrayList<String> PriceList = new ArrayList<String>();
         ArrayList<String> PathImageList = new ArrayList<>();
-        String essai = "    Salut j'essai un truck    ";
-        essai = essai.trim();
-        System.out.println(essai);
-
         String Line = "";
         String[] splitLine;
 
@@ -50,16 +46,11 @@ public class Library {
                 TypeList.add(splitLine[3].trim());
                 PriceList.add(splitLine[4].trim());
                 PathImageList.add(splitLine[5].trim());
-                /*System.out.println(NameList);
-                 System.out.println(WriterList);
-                 System.out.println(PageList);
-                 System.out.println(TypeList);
-                 System.out.println(PriceList);*/
                 }
                 for (int i = 0; i+1 <= NameList.size(); i++) {
                     addBook(new Book(NameList.get(i), Integer.parseInt(PageList.get(i)), WriterList.get(i), TypeList.get(i), PathImageList.get(i),Float.parseFloat(PriceList.get(i))));
                 confirmationAdded=true;
-                System.out.println("livre ajouté");
+
 
             }
         } catch (Exception e) {

@@ -142,9 +142,8 @@ public class AdminController implements Initializable {
         bListView.getItems().clear(); // Clear the list, else the books appear many times
         if(SearchChoice.getValue()==null) {
             bName.setText("Please select a search method");
-        }
 
-        else{ switch(SearchChoice.getValue()) { // If name are selected in choiceBox
+        }else{ switch(SearchChoice.getValue()) { // If name are selected in choiceBox
             case "Name":
                 String pathimage = "not the good path";
                 bookToShow = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
@@ -279,6 +278,7 @@ public class AdminController implements Initializable {
      */
     @FXML
     protected void OnAddBookClick(){
+        errorMessage.setText("");
         String abName;
         String abWriter;
         String abType;
@@ -307,6 +307,22 @@ public class AdminController implements Initializable {
             errorMessage.setText("Please fill all the book's specification");
         }
 
+    }
+
+    @FXML
+    protected void OnSelectCSVButtonClick(){
+        errorMessage.setText("");
+        FileChooser FC = new FileChooser();
+        File CsvFile = FC.showOpenDialog(null);
+
+        if(HelloApplication.LibraryTest1.readCSV("DataBooks/"+CsvFile.getName())){
+            errorMessage.setText("Book added");
+            errorMessage.setTextFill(Color.GREEN);
+
+        }else {
+            errorMessage.setText("Error with adding method");
+            errorMessage.setTextFill(Color.RED);
+        };
     }
     @FXML
     protected void clearErrorLabel(){
