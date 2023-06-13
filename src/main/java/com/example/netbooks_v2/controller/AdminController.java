@@ -115,32 +115,8 @@ public class AdminController implements Initializable {
     private TextField password;
 
 
-
-
-    /*@FXML
-    protected void sortByName() {
-        ArrayList<String> booksName = HelloApplication.LibraryTest1.sortByName();
-        for (String s : booksName) {
-            System.out.println(s);
-        }
-    }
-    @FXML
-    protected void sortByWriter() {
-        ArrayList<String> writerName = HelloApplication.LibraryTest1.sortByWriter();
-        for(String s:writerName){
-            System.out.println(s);
-        }
-    }
-    @FXML
-    protected void sortByType() {
-        ArrayList<String> TypeName = HelloApplication.LibraryTest1.sortByType();
-        for (String s : TypeName) {
-            System.out.println(s);
-        }
-    } */
-
     /**
-     * Used to clear the page when you change the search method
+     * Used to clear the search page to default
      */
     @FXML
     protected void resetSearchPage() {
@@ -159,15 +135,17 @@ public class AdminController implements Initializable {
         }
 
     /**
-     * Search the book
-     * use the selected method (Name, Writer or Type)
+     * Search the book by name, writer or type. The selection criteria can be choose by the choiebox
      */
     @FXML
     protected void onSearchButtonClick(){
         resetSearchPage();
         bListView.getItems().clear(); // Clear the list, else the books appear many times
+        if(SearchChoice.getValue()==null) {
+            bName.setText("Please select a search method");
+        }
 
-        switch(SearchChoice.getValue()) {
+        else{ switch(SearchChoice.getValue()) { // If name are selected in choiceBox
             case "Name":
                 String pathimage = "not the good path";
                 bookToShow = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
@@ -182,9 +160,8 @@ public class AdminController implements Initializable {
                         SearchPicture.setVisible(true);
                         SearchPicture.setImage(img);
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
                     }
-                    bModify.setVisible(true);
+                    bModify.setVisible(true); // Show the modify button
                 }
                 else{
                     bName.setText("No book found");
@@ -199,8 +176,8 @@ public class AdminController implements Initializable {
                 for(Book b: searchedWriter){
                     bookName.add(b.getName());
                 }
-                bListView.getItems().addAll(bookName);
-                ShowBook.setVisible(true);
+                bListView.getItems().addAll(bookName); //Put all the name in the listView
+                ShowBook.setVisible(true); //Show the button "show book"
                 }
                 else{
                     bName.setText("No writer found");
@@ -215,17 +192,12 @@ public class AdminController implements Initializable {
                     for(Book b: searchedType){
                         bookName.add(b.getName());
                     }
-                    //bListView.getItems().addAll(bookName);
                     bListView.getItems().addAll(bookName);
                     ShowBook.setVisible(true);
                 }
                 else{
                         bName.setText("No type found");}
-
-                break;
-            default:
-                bName.setText("Please select a search method");
-                break;
+                break;}
         }
 
     }
@@ -283,12 +255,17 @@ public class AdminController implements Initializable {
     }
 
     //ADD METHOD
+
+    /**
+     * Generic method to select a image and set the pathImageToAdd variable
+     * /!\ the image will be in the folder BookPictures
+     */
     @FXML
     protected void onSelectPictureClick(){
         FileChooser FC = new FileChooser();
         File SelectedFile = FC.showOpenDialog(null);
         try{
-            pathImageToAdd = "BookPictures/"+SelectedFile.getName();
+            pathImageToAdd = "BookPictures/"+SelectedFile.getName(); //create the relatif path
             System.out.println("PathImage loaded");
         } catch(Exception e){
             System.out.println("Erreur chargement image");
@@ -298,6 +275,7 @@ public class AdminController implements Initializable {
 
     /**
      * Verify that text field are not empty.
+     * Verify that price and page are number
      * Create a book and put it in the library
      */
     @FXML
@@ -307,11 +285,11 @@ public class AdminController implements Initializable {
         String abType;
         float abPrice;
         int abPages;
-        if ( addWriter.getLength()>0 && addType.getLength()>0 && addName.getLength()>0 && addPages.getLength()>0 && addPrice.getLength()>0 ) {
+        if ( addWriter.getLength()>0 && addType.getLength()>0 && addName.getLength()>0 && addPages.getLength()>0 && addPrice.getLength()>0 ) { //Verify if the textfield are not empty
             abWriter = addWriter.getText();
             abName = addName.getText();
             abType = addType.getText();
-            try {
+            try {                                                   // Verifiy that price and page are number
                 abPrice = Float.parseFloat(addPrice.getText());
                 abPages = Integer.parseInt(addPages.getText());
                 HelloApplication.LibraryTest1.addBook(new Book(abName, abPages, abWriter, abType, pathImageToAdd, abPrice));
@@ -336,7 +314,25 @@ public class AdminController implements Initializable {
         errorMessage.setText("");
     }
 
+
+
     //DELETE METHOD
+
+
+    /**
+     * Reset de delete page to default value
+     */
+    @FXML
+    protected void resetDeletePage(){
+        Delete.setVisible(false);
+        ToDelete=null;
+        bNameToDelete.setText("");
+        bToDelete.clear();
+        imgBToDelete.setVisible(false);
+        ConfirmDelete.setVisible(false);
+        finishButton.setVisible(false);
+        deleteMessage.setText("Do you realy want to delete this book ?");
+    }
 
     /**
      * Search the book. If found, set the delete button true. Else put a message that the book isn't found.
@@ -345,7 +341,7 @@ public class AdminController implements Initializable {
     protected void OnSearhButtonClickDelete(){
         String PathImage = "not the good path";
         ToDelete = HelloApplication.Vivian.SearchName(bToDelete.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
-        if (ToDelete != null) {
+        if (ToDelete != null) { //Show the book and his picture
             PathImage = ToDelete.getImagePath();
             bNameToDelete.setText("Name: " + ToDelete.getName());
             try {
@@ -387,19 +383,11 @@ public class AdminController implements Initializable {
         finishButton.setVisible(true);
     }
 
-    /**
-     * Clear all and return to the default page
-     * Used by finish button and "not delte button"
-     */
-    @FXML
-    protected void OnfinishButtonClick(){
-        ConfirmDelete.setVisible(false);
-        bNameToDelete.setText("");
-        bToDelete.clear();
-        imgBToDelete.setVisible(false);
-        Delete.setVisible(false);
-    }
+
+
+
     // Modify method
+
 
     /**
      * Show the modifcation pane et show the back button
@@ -489,7 +477,7 @@ public class AdminController implements Initializable {
     @FXML
     protected void onLogInButtonClick(ActionEvent event){
         if (username.getLength()>0 && password.getLength()>0){
-            for(Person p : HelloApplication.allPeople.getList()){
+            for(Person p : HelloApplication.allPeople.getList()){ // allPeople are the class with all the users of the application
                 if(p.getUserName().equals(username.getText())&&p.getPassWorld().equals(password.getText())){
                     if(p.getClass()== Admin.class){
                         System.out.println("Lancer l'admin view");

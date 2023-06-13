@@ -53,11 +53,15 @@ public class HelloApplication extends Application {
         LibraryTest1.addBook(MikeHorn);
         LibraryTest1.addBook(cherub);
         LibraryTest1.addBook(ToucherLesEtoiles);
-        //LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
         LibraryTest1.AddInCsv("aaa", "bbb", 12,"ccc",25,"ccc","DataBooks/Resources_Data_Netbooks.csv" );
         LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
         launch();
     }
+
+    /**
+     * Used to switch admin-view to user-view when logged
+     * @param event use the click of the mouse
+     */
     public static void switchScene (ActionEvent event){
         Stage stage2 = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();

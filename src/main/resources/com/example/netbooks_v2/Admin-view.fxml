@@ -97,14 +97,14 @@
                         <Label fx:id="bNameToDelete" layoutX="387.0" layoutY="57.0" />
                         <Pane fx:id="ConfirmDelete" layoutX="152.0" layoutY="136.0" prefHeight="228.0" prefWidth="395.0" visible="false">
                            <children>
-                              <Button layoutX="123.0" layoutY="136.0" mnemonicParsing="false" onAction="#OnYesDeleteButtonClick" text="Yes" visible="false" />
-                              <Button layoutX="234.0" layoutY="136.0" mnemonicParsing="false" onAction="#OnfinishButtonClick" text="No" />
+                              <Button layoutX="123.0" layoutY="136.0" mnemonicParsing="false" onAction="#OnYesDeleteButtonClick" text="Yes" />
+                              <Button layoutX="234.0" layoutY="136.0" mnemonicParsing="false" onAction="#resetDeletePage" text="No" />
                               <Label fx:id="deleteMessage" layoutX="26.0" layoutY="58.0" text="Do you realy want to delete this book ?">
                                  <font>
                                     <Font name="Arial Black" size="16.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="finishButton" layoutX="321.0" layoutY="161.0" mnemonicParsing="false" onAction="#OnfinishButtonClick" text="Finish" visible="false" />
+                              <Button fx:id="finishButton" layoutX="321.0" layoutY="161.0" mnemonicParsing="false" onAction="#resetDeletePage" text="Finish" visible="false" />
                            </children>
                         </Pane>
                      </children></AnchorPane>
