@@ -20,9 +20,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
-    @FXML
+
     // Id for search method
-    ArrayList<Book> blib = HelloApplication.LibraryTest1.getBookLibrary();
     @FXML
     private Label bName;
     @FXML
@@ -202,8 +201,6 @@ public class AdminController implements Initializable {
                 break;}
         }
 
-
-
     /**
      * Show the book and set the list book visibility false
      * Set back button visibility true
@@ -313,6 +310,11 @@ public class AdminController implements Initializable {
 
     }
 
+    /**
+     * Open a window to select a CSV with dataBook. The CSV must be in the folder ""DataBooks"
+     * Call the csvreader in Library which create and add the book
+     * Show a message if the books have been added
+     */
     @FXML
     protected void OnSelectCSVButtonClick(){
         errorMessage.setText("");
@@ -426,13 +428,14 @@ public class AdminController implements Initializable {
 
     }
 
+
+    @FXML
     /**
      * Take the new data and mofify the book
      * If the textfield are empty, the book attribut is not changed
      * Put a confirmation message
      * Verify that pages and float are number
      */
-    @FXML
     protected void OnConfirmModificationClick(){
         boolean modification = false;
         boolean notNumber = false;
