@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Admin extends Person implements Tools{
-    String UserAdmin;
-    String passWorld;
+    private String UserAdmin;
+    private String passWorld;
 
     public Admin(String UserAdmin, String passWorld){
 
@@ -15,7 +15,7 @@ public class Admin extends Person implements Tools{
     /**
      * Used to search a book's name
      * @param BookName
-     * @return the book's name
+     * @return the serached book
      */
 
     public Book SearchName (String BookName, ArrayList<Book> booklib) {
@@ -60,7 +60,7 @@ public class Admin extends Person implements Tools{
     }
     /**
      * Method to sort the library by name in alphabetic order
-     * @return a arraylist of names
+     * @return a Arraylist<String> of names
      */
 
     public ArrayList sortByName(ArrayList<Book>booklib) {
@@ -73,7 +73,7 @@ public class Admin extends Person implements Tools{
     }
     /**
      * Method to sort the library by writer in alphabetic order
-     * @return a list of writer
+     * @return a Arraylist<String> of writer
      */
 
     public ArrayList<String> sortByWriter(ArrayList<Book> booklib) {
@@ -97,15 +97,5 @@ public class Admin extends Person implements Tools{
         return TypeLibrary;
     }
 
-    public void SortBook() {
 
-    }
-
-    public void AddBook(){};
-
-    public void RemoveBook(){}
-
-
-
-    public void ModifyBook(){}
 }

@@ -8,10 +8,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.Writer;
+import java.net.URL;
 import java.util.*;
 
-public class UserController  {
+public class UserController implements Initializable {
     @FXML
     private Label welcomeText;
 
@@ -58,11 +58,13 @@ public class UserController  {
     private ListView <String> showList;
     @FXML
    private ArrayList<Book> TabSearch = HelloApplication.LibraryTest1.getBookLibrary();
-
-   // private Book bookN;
    @FXML
    private ChoiceBox<String> SChoice;
    private String[] choice = {"Name", "Writer", "Type"};
+
+    // Id for Buy method
+    @FXML
+    private ListView <String> ListPanier;
 
 
 
@@ -77,6 +79,12 @@ public class UserController  {
 
 
     }*/
+public void initialize(URL url, ResourceBundle resourceBundle) {
+    SearchChoice.getItems().addAll(CBName);
+    SChoice.getItems().addAll(CBName);
+
+}
+
     @FXML
     protected void resetSearchPage() {
        // pathImageToAdd="";
@@ -173,33 +181,33 @@ protected void onSearchButtonClick(){
 
         ArrayList<Book> TabSearch=  HelloApplication.LibraryTest1.getBookLibrary();  // book library
 
-        ArrayList<String> nbookname = HelloApplication.Fred.sortByName(TabSearch); //List of book sort by name
+        ArrayList<String> nbookname = HelloApplication.UserTest.sortByName(TabSearch); //List of book sort by name
 
-        ArrayList<String> nbookType = HelloApplication.Fred.sortByType(TabSearch);
+        ArrayList<String> nbookType = HelloApplication.UserTest.sortByType(TabSearch);
 
-        ArrayList<String> nbookWriter = HelloApplication.Fred.sortByWriter(TabSearch);
+        ArrayList<String> nbookWriter = HelloApplication.UserTest.sortByWriter(TabSearch);
 
         showList.getItems().clear();
         switch(SChoice.getValue()){
             case "Name":
-                for(int i = 0; i < nbookname.size(); i++)
+                for(int i = 0; i < nbookname.size(); i++){
                     System.out.println( nbookname.get(i).toString() + "\n");
-               showList.getItems().addAll(nbookname);
+               showList.getItems().addAll(nbookname.get(i));}
 
                 break;
 
             case "Writer":
-                for(int i = 0; i < nbookWriter.size(); i++)
-                    System.out.println("After Sorting: "+ nbookname);
+                for(int i = 0; i < nbookWriter.size(); i++){
+                    System.out.println("After Sorting: "+ nbookWriter.get(i));
                    // System.out.println( nbookWriter.get(i).toString() + "\n");
-                     //showList.getItems().addAll(nbookWriter);
+                showList.getItems().addAll(nbookWriter.get(i));}
                 break;
 
             case "Type":
-                for(int i = 0; i < nbookType.size(); i++)
+                for(int i = 0; i < nbookType.size(); i++){
                     System.out.println("After Sorting: "+ nbookWriter);
                     //System.out.println( nbookType.get(i).toString() + "\n");
-                showList.getItems().addAll(nbookType);
+                showList.getItems().addAll(nbookType.get(i));}
                 break;
 
             default:
@@ -209,61 +217,35 @@ protected void onSearchButtonClick(){
 
         }
 
-       /*if(nbookname!=null){
-        for (int i=0;i<nbookname.size();i++){
-          // Collections.sort(nbookname);
-           System.out.println("la liste trier"+nbookname);
-           showList.getItems();
-
-           Name.setText("Name: "+ showList.getName());
-           Writer.setText("Writer: " + showList.getWriter());
-           Type.setText("Type: " + showList.getType());*/
-
-
-
-
 
         }
-           // for (int j=i+1;j<TabSearch.size();j++){
-                //if(TabSearch.get(i).compareTo(TabSearch.get(j))<0){
-           /* if( TabSearch[i])
-                   nbookname =TabSearch.get(i);
-                    TabSearch.set(i,TabSearch.get(j));
-                    TabSearch.set(j,nbookname);*/
-
-        //        }
-      //      }
 
 
 
 
-   /* public static void onSortButtonClickName(){
-        ArrayList<Book> temp= new ArrayList<>();
-        ArrayList<Book> TabSearch=  HelloApplication.LibraryTest1.getBookLibrary();
 
-
-        for (int i=0;i<TabSearch.size();i++){
-            for (int j=i+1;j<TabSearch.size();j++){
-                if(TabSearch.get(i).getType().compareTo(TabSearch.get(j).getType())<0){
-                    temp =TabSearch.get(i);
-                    TabSearch.set(i,TabSearch.get(j));
-                    TabSearch.set(j,temp);
-
-                }
-            }
-        }
-        //Collections.sort(TabSearch);
-        System.out.println("la liste apès tris : " + TabSearch);
-
-    }
 
 
     //methode de creation d'une pannier achat
+
+
    // public static void  Panier {
 
+   /* public String BuyBook(Book BookName,ArrayList<Book> booklib) {
+        String WishBook = "Not the book";
+        for(Book b: booklib){
+            if (b.getName().equals(BookName)){
+                WishBook = b.getName();
+            }
+        }
+        System.out.println("get book");
+        return WishBook;
+    }
 
 
-     /*  public static void ajouterArticle(Book book, int qte) {
+}*/
+
+     /*  public static void BuyBook(Book bookWish, ArrayList<Book> ) {
             Integer quantity = ajouterArticle().get(book);
             if (quantity == null) {
                 quantity = Integer.valueOf(0);

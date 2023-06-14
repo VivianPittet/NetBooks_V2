@@ -43,21 +43,27 @@ public class HelloApplication extends Application {
         Himen = new Admin("Himen", "0002");
         Fred = new Users("Fred","0003");
         allPeople= new PersonList(Vivian);
+        allPeople.addPerson(new Admin("AdminTest","0"));
+        allPeople.addPerson(UserTest);
         allPeople.addPerson(Candice);
-        allPeople.addPerson(Fred);
         allPeople.addPerson(Himen);
         Book ToucherLesEtoiles = new Book("Vouloir toucher les étoiles", 249,"Mike Horn","Adventure","none",15f);
         Book MikeHorn = new Book("Latitude 0",352,"Mike Horn","Adventure","BookPictures/LATITUDE 0.png",22.8445f);
         Book cherub = new Book("100 jours en enfer", 448,"Robert Muchamore", "SF","BookPictures/cherub1.png", 8.2f);
+
         LibraryTest1 = new Library();
         LibraryTest1.addBook(MikeHorn);
         LibraryTest1.addBook(cherub);
         LibraryTest1.addBook(ToucherLesEtoiles);
-        //LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
-        LibraryTest1.AddInCsv("aaa", "bbb", 12,"ccc",25,"ccc","DataBooks/Resources_Data_Netbooks.csv" );
-        LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
+
+
         launch();
     }
+
+    /**
+     * Used to switch admin-view to user-view when logged
+     * @param event use the click of the mouse
+     */
     public static void switchScene (ActionEvent event){
         Stage stage2 = new Stage();
         ((Node)(event.getSource())).getScene().getWindow().hide();

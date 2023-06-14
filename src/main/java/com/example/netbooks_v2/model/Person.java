@@ -1,8 +1,8 @@
 package com.example.netbooks_v2.model;
 
 public class Person {
-    String UserName;
-    String PassWorld;
+    private String UserName;
+    private String PassWorld;
     private String[][] accounts = {{"anthony", "supernova"},{"steve", "java1"}};
     public Person(String UserName, String PassWorld){
         this.UserName=UserName;
