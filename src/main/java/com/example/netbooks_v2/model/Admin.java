@@ -31,7 +31,7 @@ public class Admin extends Person implements Tools{
     /**
      * Used to search books of a writer
      * @param writer
-     * @return a Arraylist of book with the resquested writer
+     * @return a list of book with the resquested writer
      */
 
     public ArrayList<Book> SearchWriter(String writer, ArrayList<Book> booklib) {

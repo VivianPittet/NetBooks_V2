@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
+    @FXML
     // Id for search method
+    ArrayList<Book> blib = HelloApplication.LibraryTest1.getBookLibrary();
     @FXML
     private Label bName;
     @FXML
@@ -116,11 +118,10 @@ public class AdminController implements Initializable {
 
 
     /**
-     * Used to clear the search page to default
+     * Used to clear the page when you change the search method
      */
     @FXML
     protected void resetSearchPage() {
-        backButton.setVisible(false);
         pathImageToAdd="";
         ShowBook.setVisible(false);
         bModify.setVisible(false);
@@ -136,16 +137,15 @@ public class AdminController implements Initializable {
         }
 
     /**
-     * Search the book by name, writer or type. The selection criteria can be choose by the choiebox
+     * Search the book
+     * use the selected method (Name, Writer or Type)
      */
     @FXML
     protected void onSearchButtonClick(){
         resetSearchPage();
         bListView.getItems().clear(); // Clear the list, else the books appear many times
-        if(SearchChoice.getValue()==null) {
-            bName.setText("Please select a search method");
 
-        }else{ switch(SearchChoice.getValue()) { // If name are selected in choiceBox
+        switch(SearchChoice.getValue()) {
             case "Name":
                 String pathimage = "not the good path";
                 bookToShow = HelloApplication.Vivian.SearchName(SearchBar.getText(), HelloApplication.LibraryTest1.getBookLibrary()); // Récupère champs de texte et renvoi le livre correspondant.
@@ -160,8 +160,9 @@ public class AdminController implements Initializable {
                         SearchPicture.setVisible(true);
                         SearchPicture.setImage(img);
                     } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
-                    bModify.setVisible(true); // Show the modify button
+                    bModify.setVisible(true);
                 }
                 else{
                     bName.setText("No book found");
@@ -200,7 +201,7 @@ public class AdminController implements Initializable {
                 break;}
         }
 
-    }
+
 
     /**
      * Show the book and set the list book visibility false
