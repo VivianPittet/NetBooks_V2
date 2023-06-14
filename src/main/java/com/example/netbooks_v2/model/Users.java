@@ -53,7 +53,9 @@ public class Users extends Person implements Tools {
     public ArrayList<String> sortByWriter(ArrayList<Book> booklib) {
         ArrayList<String> WriterLibrary = new ArrayList<String>();
         for(Book b: booklib){
-            WriterLibrary.add(b.getWriter());
+            if(!WriterLibrary.contains(b.getWriter())) {
+                WriterLibrary.add(b.getWriter());
+            }
         }
         Collections.sort(WriterLibrary);
         return WriterLibrary;
@@ -72,7 +74,9 @@ public class Users extends Person implements Tools {
     public ArrayList sortByName(ArrayList<Book>booklib) {
         ArrayList<String> NameLibrary = new ArrayList<String>();
         for(Book b: booklib){
-            NameLibrary.add(b.getName());
+            if(!NameLibrary.contains(b.getName())) {
+                NameLibrary.add(b.getName());
+            }
         }
         Collections.sort(NameLibrary);
         return NameLibrary;

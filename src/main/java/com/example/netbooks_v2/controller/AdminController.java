@@ -122,6 +122,7 @@ public class AdminController implements Initializable {
      */
     @FXML
     protected void resetSearchPage() {
+        backButton.setVisible(false);
         pathImageToAdd="";
         ShowBook.setVisible(false);
         bModify.setVisible(false);
@@ -418,6 +419,7 @@ public class AdminController implements Initializable {
 
     @FXML
     protected void onModifiyButtonClick(){
+        resetSearchPage();
         resetModifyPane(); // Used to clear the panel in the case of not cleared before
         paneModify.setVisible(true); // Set the modify pane visible
         backModify.setVisible(true);
@@ -432,36 +434,52 @@ public class AdminController implements Initializable {
      */
     @FXML
     protected void OnConfirmModificationClick(){
-        int bookIndex;
+        boolean modification = false;
+        boolean notNumber = false;
         if (!bNameModify.getText().equals("")){
             bookToShow.setName(bNameModify.getText());
+            modification=true;
         }
         if (!bWriterModify.getText().equals("")){
             bookToShow.setWriter(bWriterModify.getText());
+            modification=true;
         }
         if (!bTypeModify.getText().equals("")){
             bookToShow.setType(bTypeModify.getText());
+            modification=true;
         }
         if (!bPriceModify.getText().equals("")){
             try {
                 bookToShow.setPrice(Float.parseFloat(bPriceModify.getText()));
+                modification=true;
             }catch(Exception e){errorModify.setText("Please enter un number for price");
                 errorModify.setTextFill(Color.RED);
+                notNumber=true;
             }
         }
         if (!bPagesModify.getText().equals("")){
             try {
                 bookToShow.setPages(Integer.parseInt(bNameModify.getText()));
-            }catch(Exception e){errorModify.setText("Please enter un number for pages");
+                modification=true;
+            }catch(Exception e){
+                errorModify.setText("Please enter un number for pages");
                 errorModify.setTextFill(Color.RED);
+                notNumber=true;
             }
         }
         if (!pathImageToAdd.equals("")){
             bookToShow.setImagePath(pathImageToAdd);;
             pathImageToAdd=""; //The future image will not modified in case of no usage of textfield
+            modification=true;
         }
-        errorModify.setText("Book modified !");
-        errorModify.setTextFill(Color.GREEN);
+        if(!notNumber){ //If it's not a number in the text field, don't show the message "book modified"
+            if(modification){ // Confirm that the book has been modified on element or more has been modified
+            errorModify.setText("Book modified !");
+            errorModify.setTextFill(Color.GREEN);
+            }else{
+                errorModify.setText("No modification has been made");
+            }
+        }
     }
 
     /**
