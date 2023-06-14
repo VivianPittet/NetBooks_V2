@@ -52,8 +52,10 @@ public class Users extends Person implements Tools {
    // @Override
     public ArrayList<String> sortByWriter(ArrayList<Book> booklib) {
         ArrayList<String> WriterLibrary = new ArrayList<String>();
-        for(Book b: booklib){
-            WriterLibrary.add(b.getWriter());
+        for(Book b: booklib) {
+            if (!WriterLibrary.contains(b.getWriter())) {
+                WriterLibrary.add(b.getWriter());
+            }
         }
         Collections.sort(WriterLibrary);
         return WriterLibrary;
@@ -62,7 +64,9 @@ public class Users extends Person implements Tools {
     public ArrayList<String> sortByType(ArrayList<Book> booklib) {
         ArrayList<String> TypeLibrary = new ArrayList<>();
         for (Book b : booklib) {
-            TypeLibrary.add(b.getType());
+            if (!TypeLibrary.contains(b.getType())) {
+                TypeLibrary.add(b.getType());
+            }
         }
         Collections.sort(TypeLibrary);
         return TypeLibrary;
