@@ -18,7 +18,7 @@ public class HelloApplication extends Application {
     public static Admin Vivian;
     public static Admin Candice;
     public static Admin Himen;
-    public static Users Fred;
+    public static Users UserTest= new Users("UserTest","0");
     public static PersonList allPeople;
 
     public static Scene scene;
@@ -43,7 +43,7 @@ public class HelloApplication extends Application {
         Himen = new Admin("Himen", "0002");
         allPeople= new PersonList(Vivian);
         allPeople.addPerson(new Admin("AdminTest","0"));
-        allPeople.addPerson(new Users("UserTest","0"));
+        allPeople.addPerson(UserTest);
         allPeople.addPerson(Candice);
         allPeople.addPerson(Himen);
         /*Book ToucherLesEtoiles = new Book("Vouloir toucher les étoiles", 249,"Mike Horn","Adventure","none",15f);
