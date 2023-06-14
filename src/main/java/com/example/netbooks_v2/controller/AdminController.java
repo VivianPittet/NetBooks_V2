@@ -106,6 +106,8 @@ public class AdminController implements Initializable {
 
     //ID for connexion panel
     @FXML
+    private Button GoUser;
+    @FXML
     private Accordion adminView;
     @FXML
     private Pane logInPane;
@@ -313,16 +315,21 @@ public class AdminController implements Initializable {
     @FXML
     protected void OnSelectCSVButtonClick(){
         errorMessage.setText("");
-        FileChooser FC = new FileChooser();
-        File CsvFile = FC.showOpenDialog(null);
+        try {
+            FileChooser FC = new FileChooser();
 
-        if(HelloApplication.LibraryTest1.readCSV("DataBooks/"+CsvFile.getName())){
-            errorMessage.setText("Book added");
-            errorMessage.setTextFill(Color.GREEN);
+            File CsvFile = FC.showOpenDialog(null);
 
-        }else {
-            errorMessage.setText("Error with adding method");
-            errorMessage.setTextFill(Color.RED);
+            if (HelloApplication.LibraryTest1.readCSV("DataBooks/" + CsvFile.getName())) {
+                errorMessage.setText("Book added");
+                errorMessage.setTextFill(Color.GREEN);
+
+            } else {
+                errorMessage.setText("Error with adding method");
+                errorMessage.setTextFill(Color.RED);
+            }
+        }catch(Exception e){
+            errorMessage.setText("Pleas Select a CSV file");
         };
     }
     @FXML
@@ -500,6 +507,8 @@ public class AdminController implements Initializable {
                         System.out.println("Lancer l'admin view");
                         logInPane.setVisible(false);
                         adminView.setVisible(true);
+                        GoUser.setVisible(true);
+
                         break;
                     }else{
                         try{HelloApplication.switchScene(event);
@@ -514,6 +523,10 @@ public class AdminController implements Initializable {
                 }
             }
         }
+    }
+    @FXML
+    public void GoToUserView(ActionEvent event){
+        HelloApplication.switchScene(event);
     }
 
 }
