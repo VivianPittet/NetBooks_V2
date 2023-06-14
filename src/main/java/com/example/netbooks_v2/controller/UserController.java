@@ -183,11 +183,12 @@ protected void onSearchButtonClick(){
 
         ArrayList<String> nbookname = HelloApplication.UserTest.sortByName(TabSearch); //List of book sort by name
 
-        ArrayList<String> nbookType = HelloApplication.UserTest.sortByType(TabSearch);
+        ArrayList<String> nbookType = HelloApplication.UserTest.sortByType(TabSearch); // List of book sort byType
 
-        ArrayList<String> nbookWriter = HelloApplication.UserTest.sortByWriter(TabSearch);
+        ArrayList<String> nbookWriter = HelloApplication.UserTest.sortByWriter(TabSearch); // List of book sort by Writer
 
-        showList.getItems().clear();
+
+     showList.getItems().clear();
         switch(SChoice.getValue()){
             case "Name":
                 for(int i = 0; i < nbookname.size(); i++){
@@ -216,14 +217,7 @@ protected void onSearchButtonClick(){
 
 
         }
-
-
-        }
-
-
-
-
-
+    }
 
 
     //methode de creation d'une pannier achat
@@ -244,33 +238,6 @@ protected void onSearchButtonClick(){
 
 
 }*/
-
-     /*  public static void BuyBook(Book bookWish, ArrayList<Book> ) {
-            Integer quantity = ajouterArticle().get(book);
-            if (quantity == null) {
-                quantity = Integer.valueOf(0);
-
-            }
-            quantity = Integer.valueOf(quantity.intValue() + 1);
-            ajouterArticle().put(book, quantity);
-        }
-
-        public static void supprimerArticle(Book book) {
-            supprimerArticle().remove(book);
-        }
-
-     /*   public int calculerPanier() {
-            int total = 0;
-            Iterator<Entry<Book, Integer>> il = this.articles.entrySet().iterator();
-            while (il.hasNext()) {
-                Entry<Article, Integer> entry = il.next();
-                total += entry.getKey().getPrix() * entry.getValue().intValue();
-            }
-            return total;
-        }
-    }*/
-
-
 
 
 }

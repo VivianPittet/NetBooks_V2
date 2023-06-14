@@ -41,7 +41,6 @@ public class HelloApplication extends Application {
         Vivian = new Admin("Vivian","0000");
         Candice = new Admin("Candice","0001");
         Himen = new Admin("Himen", "0002");
-        Fred = new Users("Fred","0003");
         allPeople= new PersonList(Vivian);
         allPeople.addPerson(new Admin("AdminTest","0"));
         allPeople.addPerson(UserTest);
