@@ -46,8 +46,8 @@ public class HelloApplication extends Application {
         allPeople.addPerson(UserTest);
         allPeople.addPerson(Candice);
         allPeople.addPerson(Himen);
-
         LibraryTest1 = new Library();
+        LibraryTest1.readCSV("DataBooks/Resources_Data_Netbooks.csv");
 
 
 
